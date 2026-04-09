@@ -1,0 +1,20 @@
+{
+  "extends": "../../packages/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "incremental": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@livinglog/ui": ["../../packages/ui/src"],
+      "@livinglog/ui/*": ["../../packages/ui/src/*"],
+      "@livinglog/graphql": ["../../packages/graphql/index.ts"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
