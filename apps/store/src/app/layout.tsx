@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ApolloClientProvider } from "@/lib/apollo-provider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const pretendard = localFont({
   src: "../../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
@@ -39,7 +41,11 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <ApolloClientProvider>{children}</ApolloClientProvider>
+        <ApolloClientProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ApolloClientProvider>
       </body>
     </html>
   );

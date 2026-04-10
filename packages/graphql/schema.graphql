@@ -1,7 +1,10 @@
 type Query {
   user(id: ID!): User
   users: [User!]!
+  bestsellers: [Product!]!
+  categories: [Category!]!
 }
+
 
 type Mutation {
   login(input: LoginInput!): AuthPayload!
@@ -34,4 +37,30 @@ input LoginInput {
 enum UserRole {
   ADMIN
   USER
+}
+
+enum Badge {
+  FREE_SHIPPING
+  SPECIAL
+  SHIPPING_FEE
+}
+
+type Product {
+  id: ID!
+  brand: String!
+  name: String!
+  originalPrice: Int!
+  discountRate: Int!
+  rating: Float!
+  reviewCount: Int!
+  badges: [Badge!]!
+  imageUrl: String!
+  href: String!
+}
+
+type Category {
+  id: ID!
+  label: String!
+  imageUrl: String!
+  href: String!
 }

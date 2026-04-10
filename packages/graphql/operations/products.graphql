@@ -1,0 +1,23 @@
+query GetBestsellers {
+  bestsellers {
+    id
+    brand
+    name
+    originalPrice
+    discountRate
+    rating
+    reviewCount
+    badges
+    imageUrl
+    href
+  }
+}
+
+query GetCategories {
+  categories {
+    id
+    label
+    imageUrl
+    href
+  }
+}

@@ -24,6 +24,20 @@ export type AuthPayload = {
   user: User;
 };
 
+export enum Badge {
+  FreeShipping = 'FREE_SHIPPING',
+  ShippingFee = 'SHIPPING_FEE',
+  Special = 'SPECIAL'
+}
+
+export type Category = {
+  __typename?: 'Category';
+  href: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  imageUrl: Scalars['String']['output'];
+  label: Scalars['String']['output'];
+};
+
 export type LoginInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -40,8 +54,24 @@ export type MutationLoginArgs = {
   input: LoginInput;
 };
 
+export type Product = {
+  __typename?: 'Product';
+  badges: Array<Badge>;
+  brand: Scalars['String']['output'];
+  discountRate: Scalars['Int']['output'];
+  href: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  imageUrl: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  originalPrice: Scalars['Int']['output'];
+  rating: Scalars['Float']['output'];
+  reviewCount: Scalars['Int']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  bestsellers: Array<Product>;
+  categories: Array<Category>;
   user?: Maybe<User>;
   users: Array<User>;
 };
@@ -87,6 +117,16 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
+
+export type GetBestsellersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetBestsellersQuery = { __typename?: 'Query', bestsellers: Array<{ __typename?: 'Product', id: string, brand: string, name: string, originalPrice: number, discountRate: number, rating: number, reviewCount: number, badges: Array<Badge>, imageUrl: string, href: string }> };
+
+export type GetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCategoriesQuery = { __typename?: 'Query', categories: Array<{ __typename?: 'Category', id: string, label: string, imageUrl: string, href: string }> };
 
 export type GetUserQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -142,6 +182,70 @@ export function useLogoutMutation(baseOptions?: ApolloReactHooks.MutationHookOpt
 export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
+export const GetBestsellersDocument = gql`
+    query GetBestsellers {
+  bestsellers {
+    id
+    brand
+    name
+    originalPrice
+    discountRate
+    rating
+    reviewCount
+    badges
+    imageUrl
+    href
+  }
+}
+    `;
+export function useGetBestsellersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetBestsellersQuery, GetBestsellersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetBestsellersQuery, GetBestsellersQueryVariables>(GetBestsellersDocument, options);
+      }
+export function useGetBestsellersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetBestsellersQuery, GetBestsellersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetBestsellersQuery, GetBestsellersQueryVariables>(GetBestsellersDocument, options);
+        }
+// @ts-ignore
+export function useGetBestsellersSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<GetBestsellersQuery, GetBestsellersQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetBestsellersQuery, GetBestsellersQueryVariables>;
+export function useGetBestsellersSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetBestsellersQuery, GetBestsellersQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetBestsellersQuery | undefined, GetBestsellersQueryVariables>;
+export function useGetBestsellersSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetBestsellersQuery, GetBestsellersQueryVariables>) {
+          const options = baseOptions === ApolloReactHooks.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<GetBestsellersQuery, GetBestsellersQueryVariables>(GetBestsellersDocument, options);
+        }
+export type GetBestsellersQueryHookResult = ReturnType<typeof useGetBestsellersQuery>;
+export type GetBestsellersLazyQueryHookResult = ReturnType<typeof useGetBestsellersLazyQuery>;
+export type GetBestsellersSuspenseQueryHookResult = ReturnType<typeof useGetBestsellersSuspenseQuery>;
+export type GetBestsellersQueryResult = Apollo.QueryResult<GetBestsellersQuery, GetBestsellersQueryVariables>;
+export const GetCategoriesDocument = gql`
+    query GetCategories {
+  categories {
+    id
+    label
+    imageUrl
+    href
+  }
+}
+    `;
+export function useGetCategoriesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument, options);
+      }
+export function useGetCategoriesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument, options);
+        }
+// @ts-ignore
+export function useGetCategoriesSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetCategoriesQuery, GetCategoriesQueryVariables>;
+export function useGetCategoriesSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetCategoriesQuery | undefined, GetCategoriesQueryVariables>;
+export function useGetCategoriesSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetCategoriesQuery, GetCategoriesQueryVariables>) {
+          const options = baseOptions === ApolloReactHooks.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument, options);
+        }
+export type GetCategoriesQueryHookResult = ReturnType<typeof useGetCategoriesQuery>;
+export type GetCategoriesLazyQueryHookResult = ReturnType<typeof useGetCategoriesLazyQuery>;
+export type GetCategoriesSuspenseQueryHookResult = ReturnType<typeof useGetCategoriesSuspenseQuery>;
+export type GetCategoriesQueryResult = Apollo.QueryResult<GetCategoriesQuery, GetCategoriesQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser($id: ID!) {
   user(id: $id) {
