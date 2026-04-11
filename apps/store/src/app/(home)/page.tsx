@@ -5,7 +5,7 @@ import MainBanner from "./_components/MainBanner";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col">
       <MainBanner />
       <CategoriesSection />
       <BestsellerSection />

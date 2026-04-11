@@ -21,3 +21,23 @@ query GetCategories {
     href
   }
 }
+
+query GetProducts($filter: ProductFilter) {
+  products(filter: $filter) {
+    items {
+      id
+      brand
+      name
+      originalPrice
+      discountRate
+      rating
+      reviewCount
+      badges
+      imageUrl
+      href
+      categorySlug
+    }
+    total
+    hasMore
+  }
+}

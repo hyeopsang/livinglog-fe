@@ -58,6 +58,7 @@ export type Product = {
   __typename?: 'Product';
   badges: Array<Badge>;
   brand: Scalars['String']['output'];
+  categorySlug: Scalars['String']['output'];
   discountRate: Scalars['Int']['output'];
   href: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -68,12 +69,43 @@ export type Product = {
   reviewCount: Scalars['Int']['output'];
 };
 
+export type ProductConnection = {
+  __typename?: 'ProductConnection';
+  hasMore: Scalars['Boolean']['output'];
+  items: Array<Product>;
+  total: Scalars['Int']['output'];
+};
+
+export type ProductFilter = {
+  categoryId?: InputMaybe<Scalars['ID']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  maxPrice?: InputMaybe<Scalars['Int']['input']>;
+  minPrice?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  query?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<ProductSort>;
+};
+
+export enum ProductSort {
+  Newest = 'NEWEST',
+  Popular = 'POPULAR',
+  PriceAsc = 'PRICE_ASC',
+  PriceDesc = 'PRICE_DESC',
+  Rating = 'RATING'
+}
+
 export type Query = {
   __typename?: 'Query';
   bestsellers: Array<Product>;
   categories: Array<Category>;
+  products: ProductConnection;
   user?: Maybe<User>;
   users: Array<User>;
+};
+
+
+export type QueryProductsArgs = {
+  filter?: InputMaybe<ProductFilter>;
 };
 
 
@@ -127,6 +159,13 @@ export type GetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCategoriesQuery = { __typename?: 'Query', categories: Array<{ __typename?: 'Category', id: string, label: string, imageUrl: string, href: string }> };
+
+export type GetProductsQueryVariables = Exact<{
+  filter?: InputMaybe<ProductFilter>;
+}>;
+
+
+export type GetProductsQuery = { __typename?: 'Query', products: { __typename?: 'ProductConnection', total: number, hasMore: boolean, items: Array<{ __typename?: 'Product', id: string, brand: string, name: string, originalPrice: number, discountRate: number, rating: number, reviewCount: number, badges: Array<Badge>, imageUrl: string, href: string, categorySlug: string }> } };
 
 export type GetUserQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -246,6 +285,46 @@ export type GetCategoriesQueryHookResult = ReturnType<typeof useGetCategoriesQue
 export type GetCategoriesLazyQueryHookResult = ReturnType<typeof useGetCategoriesLazyQuery>;
 export type GetCategoriesSuspenseQueryHookResult = ReturnType<typeof useGetCategoriesSuspenseQuery>;
 export type GetCategoriesQueryResult = Apollo.QueryResult<GetCategoriesQuery, GetCategoriesQueryVariables>;
+export const GetProductsDocument = gql`
+    query GetProducts($filter: ProductFilter) {
+  products(filter: $filter) {
+    items {
+      id
+      brand
+      name
+      originalPrice
+      discountRate
+      rating
+      reviewCount
+      badges
+      imageUrl
+      href
+      categorySlug
+    }
+    total
+    hasMore
+  }
+}
+    `;
+export function useGetProductsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetProductsQuery, GetProductsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetProductsQuery, GetProductsQueryVariables>(GetProductsDocument, options);
+      }
+export function useGetProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetProductsQuery, GetProductsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetProductsQuery, GetProductsQueryVariables>(GetProductsDocument, options);
+        }
+// @ts-ignore
+export function useGetProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<GetProductsQuery, GetProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetProductsQuery, GetProductsQueryVariables>;
+export function useGetProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetProductsQuery, GetProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetProductsQuery | undefined, GetProductsQueryVariables>;
+export function useGetProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetProductsQuery, GetProductsQueryVariables>) {
+          const options = baseOptions === ApolloReactHooks.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<GetProductsQuery, GetProductsQueryVariables>(GetProductsDocument, options);
+        }
+export type GetProductsQueryHookResult = ReturnType<typeof useGetProductsQuery>;
+export type GetProductsLazyQueryHookResult = ReturnType<typeof useGetProductsLazyQuery>;
+export type GetProductsSuspenseQueryHookResult = ReturnType<typeof useGetProductsSuspenseQuery>;
+export type GetProductsQueryResult = Apollo.QueryResult<GetProductsQuery, GetProductsQueryVariables>;
 export const GetUserDocument = gql`
     query GetUser($id: ID!) {
   user(id: $id) {

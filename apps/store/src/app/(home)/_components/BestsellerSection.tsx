@@ -12,14 +12,14 @@ export default function BestsellerSection() {
   const products = data?.bestsellers ?? [];
 
   return (
-    <section className="w-full py-20 px-6 bg-[#FCF9F4]">
+    <section className="w-full py-12 px-6 bg-[#FCF9F4]">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         <div className="flex items-end justify-between">
           <div className="flex flex-col gap-2">
             <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
               Best Seller
             </span>
-            <p className="text-4xl font-bold text-[#1C1C19]">베스트</p>
+            <p className="text-2xl font-bold text-[#1C1C19]">베스트 셀러</p>
             <p className="text-base text-neutral-500 mt-1">
               Livinglog의 철학을 담은 제품 — 기능성과 시간이 만들어내는 아름다움
             </p>
@@ -46,11 +46,14 @@ export default function BestsellerSection() {
               ))
             : products.map((product) => {
                 const discountedPrice = Math.round(
-                  product.originalPrice * (1 - product.discountRate / 100)
+                  product.originalPrice * (1 - product.discountRate / 100),
                 );
                 return (
                   <li key={product.id}>
-                    <Link href={product.href} className="group flex flex-col gap-3">
+                    <Link
+                      href={product.href}
+                      className="group flex flex-col gap-3"
+                    >
                       <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-neutral-100">
                         <Image
                           src={product.imageUrl}
