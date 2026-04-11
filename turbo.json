@@ -7,6 +7,7 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"],
       "env": [
+        "NODE_ENV",
         "NEXT_PUBLIC_GRAPHQL_HTTP_URL",
         "NEXT_PUBLIC_GRAPHQL_WS_URL"
       ]
@@ -21,6 +22,7 @@
       "cache": false,
       "persistent": true,
       "env": [
+        "NODE_ENV",
         "NEXT_PUBLIC_GRAPHQL_HTTP_URL",
         "NEXT_PUBLIC_GRAPHQL_WS_URL"
       ]
