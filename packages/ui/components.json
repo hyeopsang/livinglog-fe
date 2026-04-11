@@ -10,14 +10,14 @@
     "cssVariables": true,
     "prefix": ""
   },
-  "iconLibrary": "hugeicons",
+  "iconLibrary": "lucide",
   "rtl": false,
   "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
+    "components": "@livinglog/ui/components",
+    "utils": "@livinglog/ui/lib/utils",
+    "hooks": "@livinglog/ui/hooks",
+    "lib": "@livinglog/ui/lib",
+    "ui": "@livinglog/ui/components"
   },
   "menuColor": "default",
   "menuAccent": "subtle",

@@ -1,0 +1,116 @@
+"use client";
+
+import { ProductSort, useGetProductsQuery } from "@livinglog/graphql";
+import { ProductCard } from "./ProductCard";
+
+const SORT_OPTIONS: { label: string; value: ProductSort }[] = [
+  { label: "인기순", value: ProductSort.Popular },
+  { label: "최신순", value: ProductSort.Newest },
+  { label: "낮은 가격순", value: ProductSort.PriceAsc },
+  { label: "높은 가격순", value: ProductSort.PriceDesc },
+  { label: "평점순", value: ProductSort.Rating },
+];
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  categoryId?: string;
+  query?: string;
+  sort: ProductSort;
+  onSortChange: (sort: ProductSort) => void;
+}
+
+export function ProductListTemplate({
+  title,
+  subtitle,
+  categoryId,
+  query,
+  sort,
+  onSortChange,
+}: Props) {
+  // TODO: 서버 연결 시 query, sort를 filter에 포함하고 fetchPolicy 제거
+  // const { data, loading } = useGetProductsQuery({
+  //   variables: { filter: { categoryId, query, sort } },
+  // });
+  const { data } = useGetProductsQuery({
+    variables: { filter: { categoryId } },
+    fetchPolicy: "cache-only",
+  });
+
+  const allItems = data?.products.items ?? [];
+
+  // TODO: 서버 연결 시 제거 (서버에서 검색/정렬 처리)
+  const filtered = query
+    ? allItems.filter(
+        (p) =>
+          p.name.toLowerCase().includes(query.toLowerCase()) ||
+          p.brand.toLowerCase().includes(query.toLowerCase()),
+      )
+    : allItems;
+
+  const products = [...filtered].sort((a, b) => {
+    switch (sort) {
+      case ProductSort.PriceAsc:
+        return a.originalPrice - b.originalPrice;
+      case ProductSort.PriceDesc:
+        return b.originalPrice - a.originalPrice;
+      case ProductSort.Rating:
+        return b.rating - a.rating;
+      case ProductSort.Newest:
+        return (
+          Number(b.id.replace("prod-", "")) - Number(a.id.replace("prod-", ""))
+        );
+      default:
+        return b.reviewCount - a.reviewCount;
+    }
+  });
+  const total = products.length;
+
+  return (
+    <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col gap-8">
+      {/* 페이지 헤더 */}
+      <div className="flex flex-col gap-2">
+        <h1 className="text-xl font-bold text-[#1C1C19]">{title}</h1>
+        {subtitle && <p className="text-sm text-neutral-400">{subtitle}</p>}
+      </div>
+
+      {/* 정렬 + 총 개수 */}
+      <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
+        <span className="text-sm text-neutral-400">
+          총 {total.toLocaleString()}개
+        </span>
+        <div className="flex gap-1">
+          {SORT_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              onClick={() => onSortChange(opt.value)}
+              className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                sort === opt.value
+                  ? "bg-[#1C1C19] text-white"
+                  : "text-neutral-400 hover:text-[#1C1C19]"
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 상품 그리드 */}
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <li key={product.id}>
+              <ProductCard product={product} />
+            </li>
+          ))
+        ) : (
+          <li className="col-span-4 py-24 flex flex-col items-center gap-3 text-neutral-400">
+            <p className="text-base font-medium">결과가 없습니다</p>
+            <p className="text-sm">다른 검색어나 필터를 사용해보세요</p>
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+}

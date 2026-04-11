@@ -9,10 +9,10 @@ import SearchBar from "./SearchBar";
 import Logo from "@/assets/Logo.svg";
 
 const menus = [
-  { name: "가구", href: "/furniture" },
-  { name: "주방", href: "/kitchen" },
-  { name: "조명", href: "/lighting" },
-  { name: "장식", href: "/decor" },
+  { name: "가구", href: "/products/furniture" },
+  { name: "주방", href: "/products/kitchen" },
+  { name: "조명", href: "/products/lighting" },
+  { name: "장식", href: "/products/decor" },
 ];
 
 function NavItem({
@@ -29,8 +29,8 @@ function NavItem({
       <Link
         href={href}
         className={cn(
-          "relative pb-1 text-sm font-medium transition-colors",
-          "after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:bg-[#1C1C19]",
+          "relative pb-1 text-base font-medium transition-colors",
+          "after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#1C1C19]",
           "after:origin-left after:transition-transform after:duration-200",
           isActive
             ? "text-[#1C1C19] after:scale-x-100"

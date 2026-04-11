@@ -30,13 +30,13 @@ const categories = [
 
 export default function CategoriesSection() {
   return (
-    <section className="w-full py-20 px-6">
+    <section className="w-full py-12 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         <div className="flex flex-col gap-2">
           <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
             categries
           </span>
-          <p className="text-4xl font-bold text-[#1C1C19]">
+          <p className="text-2xl font-bold text-[#1C1C19]">
             일상을 위한 큐레이션
           </p>
         </div>

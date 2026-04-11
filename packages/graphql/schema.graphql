@@ -3,6 +3,31 @@ type Query {
   users: [User!]!
   bestsellers: [Product!]!
   categories: [Category!]!
+  products(filter: ProductFilter): ProductConnection!
+}
+
+input ProductFilter {
+  categoryId: ID
+  query: String
+  sort: ProductSort
+  minPrice: Int
+  maxPrice: Int
+  page: Int
+  limit: Int
+}
+
+enum ProductSort {
+  POPULAR
+  NEWEST
+  PRICE_ASC
+  PRICE_DESC
+  RATING
+}
+
+type ProductConnection {
+  items: [Product!]!
+  total: Int!
+  hasMore: Boolean!
 }
 
 
@@ -56,6 +81,7 @@ type Product {
   badges: [Badge!]!
   imageUrl: String!
   href: String!
+  categorySlug: String!
 }
 
 type Category {

@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function MainBanner() {
   return (
     <section className="w-full">
-      <div className="group relative mx-auto w-full h-200 overflow-hidden">
+      <div className="group relative mx-auto w-full h-160 overflow-hidden">
         <Image
           src="/banner/mainBanner.avif"
           alt="main-banner-image"
@@ -20,7 +20,7 @@ export default function MainBanner() {
               <span className="text-xs font-semibold tracking-[0.2em] text-white/70 uppercase">
                 New Collection 2026
               </span>
-              <p className="text-7xl font-bold text-white leading-tight max-w-2xl">
+              <p className="text-5xl font-bold text-white leading-tight max-w-2xl">
                 Make your
                 <br />
                 space yours
