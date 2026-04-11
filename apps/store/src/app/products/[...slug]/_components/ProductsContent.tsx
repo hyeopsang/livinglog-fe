@@ -1,7 +1,7 @@
 "use client";
 
 import { use } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname, useSearchParams, notFound } from "next/navigation";
 import { ProductSort, useGetProductsQuery } from "@livinglog/graphql";
 import { findCategory } from "@/lib/categories";
 import { CategorySidebar } from "@/components/CategorySidebar";
@@ -21,6 +21,7 @@ export function ProductsContent({ params }: Props) {
   const sort = (searchParams.get("sort") as ProductSort) ?? ProductSort.Popular;
 
   const category = findCategory(slug);
+  if (!category) notFound();
 
   // TODO: 서버 연결 시 sort를 filter에 포함
   // const { data, loading } = useGetProductsQuery({
