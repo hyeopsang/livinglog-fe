@@ -34,7 +34,7 @@ export default function BestsellerSection() {
         </div>
 
         {loading ? (
-          <BestsellerSkeleton />
+          <BestsellerSkeleton count={4} />
         ) : (
         <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {products.map((product) => {

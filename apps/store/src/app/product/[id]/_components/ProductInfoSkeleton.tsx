@@ -10,7 +10,10 @@ export function ProductInfoSkeleton() {
       <Skeleton className="h-10 w-48" />
       <Skeleton className="h-10 w-36" />
       <Skeleton className="h-16 rounded-2xl" />
-      <Skeleton className="h-14 rounded-2xl" />
+      <div className="flex gap-3">
+        <Skeleton className="h-14 flex-1 rounded-2xl" />
+        <Skeleton className="h-14 w-14 rounded-2xl" />
+      </div>
     </div>
   );
 }
