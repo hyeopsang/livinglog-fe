@@ -6,11 +6,14 @@ import { type Badge } from "@livinglog/graphql";
 import { Button, Separator } from "@livinglog/ui";
 import { BADGE_CONFIG } from "@/lib/badge";
 import { formatPrice, getDiscountedPrice } from "@/lib/utils";
+import { useCartStore } from "@/lib/cart-store";
 import { StarRating } from "@/app/(home)/_components/StarRating";
 
 interface Props {
+  id: string;
   brand: string;
   name: string;
+  imageUrl: string;
   originalPrice: number;
   discountRate: number;
   rating: number;
@@ -19,8 +22,10 @@ interface Props {
 }
 
 export function ProductInfo({
+  id,
   brand,
   name,
+  imageUrl,
   originalPrice,
   discountRate,
   rating,
@@ -28,6 +33,7 @@ export function ProductInfo({
   badges,
 }: Props) {
   const [quantity, setQuantity] = useState(1);
+  const addItem = useCartStore((state) => state.addItem);
 
   const discountedPrice = getDiscountedPrice(originalPrice, discountRate);
 
@@ -117,7 +123,13 @@ export function ProductInfo({
       </div>
 
       <div className="flex gap-3">
-        <Button size="lg" className="flex-1 rounded-2xl py-4 h-auto">
+        <Button
+          size="lg"
+          className="flex-1 rounded-2xl py-4 h-auto"
+          onClick={() =>
+            addItem({ id, name, brand, imageUrl, originalPrice, discountRate, quantity })
+          }
+        >
           <ShoppingCart />
           장바구니 담기
         </Button>

@@ -84,8 +84,10 @@ export function ProductDetailContent({ params }: Props) {
           discountRate={product.discountRate}
         />
         <ProductInfo
+          id={product.id}
           brand={product.brand}
           name={product.name}
+          imageUrl={product.imageUrl}
           originalPrice={product.originalPrice}
           discountRate={product.discountRate}
           rating={product.rating}

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { UserRound, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/lib/cart-store";
 import SearchBar from "./SearchBar";
 import Logo from "@/assets/Logo.svg";
 
@@ -38,6 +39,7 @@ function NavItem({ href, name, isActive }: { href: string; name: string; isActiv
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const totalCount = useCartStore((state) => state.totalCount);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
@@ -72,8 +74,13 @@ export default function Header() {
         <SearchBar />
         <ul className="flex items-center gap-5 shrink-0 text-neutral-500">
           <li>
-            <Link href="/cart" className="hover:text-brand transition-colors">
+            <Link href="/cart" className="relative hover:text-brand transition-colors">
               <ShoppingCart strokeWidth={1.5} size={20} />
+              {totalCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 min-w-4 h-4 px-0.5 flex items-center justify-center rounded-full bg-brand text-white text-[10px] font-bold leading-none">
+                  {totalCount > 99 ? "99+" : totalCount}
+                </span>
+              )}
             </Link>
           </li>
           <li>

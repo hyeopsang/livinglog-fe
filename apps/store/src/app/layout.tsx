@@ -43,9 +43,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ApolloClientProvider>
-          <Header />
-          <main><Suspense>{children}</Suspense></main>
-          <Footer />
+            <Header />
+            <main className="flex-1 flex flex-col"><Suspense>{children}</Suspense></main>
+            <Footer />
         </ApolloClientProvider>
       </body>
     </html>
