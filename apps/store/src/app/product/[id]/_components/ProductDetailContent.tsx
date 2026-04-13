@@ -18,7 +18,8 @@ export function ProductDetailContent({ params }: Props) {
 
   const { data, loading, error } = useGetProductQuery({
     variables: { id },
-    fetchPolicy: "cache-and-network",
+    // TODO: 서버 연결 시 cache-and-network로 변경
+    fetchPolicy: "cache-only",
   });
 
   const product = data?.product;

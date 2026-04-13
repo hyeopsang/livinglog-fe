@@ -11,7 +11,7 @@ export function CartContent() {
   if (isEmpty) return <EmptyCart />;
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="max-w-7xl w-full mx-auto px-6 py-10">
       <h1 className="text-xl font-bold text-brand mb-8">장바구니</h1>
       <div className="flex flex-col lg:flex-row gap-10 items-start">
         <CartItemList />
