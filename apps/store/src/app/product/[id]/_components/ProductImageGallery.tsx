@@ -34,6 +34,8 @@ export function ProductImageGallery({ images, name, discountRate }: Props) {
           {images.map((src, i) => (
             <button
               key={i}
+              type="button"
+              aria-pressed={selectedIndex === i}
               onClick={() => setSelectedIndex(i)}
               className={`relative w-20 h-20 rounded-xl overflow-hidden bg-neutral-100 border-2 transition-colors ${
                 selectedIndex === i

@@ -5,7 +5,7 @@ import { Minus, Plus, ShoppingCart, Heart } from "lucide-react";
 import { type Badge } from "@livinglog/graphql";
 import { Button, Separator } from "@livinglog/ui";
 import { BADGE_CONFIG } from "@/lib/badge";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, getDiscountedPrice } from "@/lib/utils";
 import { StarRating } from "@/app/(home)/_components/StarRating";
 
 interface Props {
@@ -29,7 +29,7 @@ export function ProductInfo({
 }: Props) {
   const [quantity, setQuantity] = useState(1);
 
-  const discountedPrice = Math.round(originalPrice * (1 - discountRate / 100));
+  const discountedPrice = getDiscountedPrice(originalPrice, discountRate);
 
   return (
     <div className="flex flex-col gap-6">

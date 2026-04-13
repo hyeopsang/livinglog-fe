@@ -8,7 +8,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { ProductImageGallery } from "./ProductImageGallery";
 import { ProductInfo } from "./ProductInfo";
 import { ProductTabs } from "./ProductTabs";
-
+import { notFound } from "next/navigation";
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -18,13 +18,13 @@ export function ProductDetailContent({ params }: Props) {
 
   const { data, loading, error } = useGetProductQuery({
     variables: { id },
-    fetchPolicy: "cache-only",
+    fetchPolicy: "cache-and-network",
   });
 
   const product = data?.product;
 
   const { data: relatedData } = useGetProductsQuery({
-    variables: { filter: { categoryId: product?.categorySlug } },
+    variables: { filter: { categoryId: product?.id } },
     fetchPolicy: "cache-only",
     skip: !product,
   });
@@ -40,7 +40,7 @@ export function ProductDetailContent({ params }: Props) {
   }
 
   if (!product) {
-    return <ErrorState message="존재하지 않는 상품입니다." />;
+    notFound();
   }
 
   const images: [string, ...string[]] =
@@ -49,7 +49,7 @@ export function ProductDetailContent({ params }: Props) {
       : [product.imageUrl];
 
   const relatedProducts = (relatedData?.products.items ?? []).filter(
-    (p) => p.id !== product.id
+    (p) => p.id !== product.id,
   );
 
   return (
@@ -69,7 +69,10 @@ export function ProductDetailContent({ params }: Props) {
           {product.categorySlug}
         </Link>
         <ChevronRight className="w-3.5 h-3.5" aria-hidden />
-        <span className="text-brand font-medium line-clamp-1" aria-current="page">
+        <span
+          className="text-brand font-medium line-clamp-1"
+          aria-current="page"
+        >
           {product.name}
         </span>
       </nav>

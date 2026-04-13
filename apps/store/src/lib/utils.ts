@@ -8,3 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function formatPrice(price: number) {
   return price.toLocaleString("ko-KR");
 }
+
+export function getDiscountedPrice(originalPrice: number, discountRate: number) {
+  return Math.round(originalPrice * (1 - discountRate / 100));
+}
