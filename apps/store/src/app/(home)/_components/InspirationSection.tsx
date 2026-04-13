@@ -83,7 +83,7 @@ export default function InspirationSection() {
             <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
               Inspiration
             </span>
-            <p className="text-2xl font-bold text-[#1C1C19]">
+            <p className="text-2xl font-bold text-brand">
               공간에서 온 영감
             </p>
             <p className="text-base text-neutral-500 mt-1">
@@ -92,7 +92,7 @@ export default function InspirationSection() {
           </div>
           <Link
             href="/"
-            className="text-sm font-medium text-neutral-400 hover:text-[#1C1C19] transition-colors underline-offset-4 hover:underline"
+            className="text-sm font-medium text-neutral-400 hover:text-brand transition-colors underline-offset-4 hover:underline"
           >
             더 보기
           </Link>

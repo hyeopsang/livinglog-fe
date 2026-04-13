@@ -15,26 +15,18 @@ const menus = [
   { name: "장식", href: "/products/decor" },
 ];
 
-function NavItem({
-  href,
-  name,
-  isActive,
-}: {
-  href: string;
-  name: string;
-  isActive: boolean;
-}) {
+function NavItem({ href, name, isActive }: { href: string; name: string; isActive: boolean }) {
   return (
     <li>
       <Link
         href={href}
         className={cn(
           "relative pb-1 text-base font-medium transition-colors",
-          "after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-[#1C1C19]",
+          "after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:bg-brand",
           "after:origin-left after:transition-transform after:duration-200",
           isActive
-            ? "text-[#1C1C19] after:scale-x-100"
-            : "text-neutral-400 hover:text-[#1C1C19] after:scale-x-0 hover:after:scale-x-100",
+            ? "text-brand after:scale-x-100"
+            : "text-neutral-400 hover:text-brand after:scale-x-0 hover:after:scale-x-100",
         )}
       >
         {name}
@@ -80,18 +72,12 @@ export default function Header() {
         <SearchBar />
         <ul className="flex items-center gap-5 shrink-0 text-neutral-500">
           <li>
-            <Link
-              href="/cart"
-              className="hover:text-[#1C1C19] transition-colors"
-            >
+            <Link href="/cart" className="hover:text-brand transition-colors">
               <ShoppingCart strokeWidth={1.5} size={20} />
             </Link>
           </li>
           <li>
-            <Link
-              href="/profile"
-              className="hover:text-[#1C1C19] transition-colors"
-            >
+            <Link href="/profile" className="hover:text-brand transition-colors">
               <UserRound strokeWidth={1.5} size={20} />
             </Link>
           </li>

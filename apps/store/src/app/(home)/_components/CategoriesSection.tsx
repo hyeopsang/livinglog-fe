@@ -36,7 +36,7 @@ export default function CategoriesSection() {
           <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
             categries
           </span>
-          <p className="text-2xl font-bold text-[#1C1C19]">
+          <p className="text-2xl font-bold text-brand">
             일상을 위한 큐레이션
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function CategoriesSection() {
                   className="transition-transform duration-500 group-hover:scale-105"
                 />
               </Link>
-              <span className="text-base font-medium text-[#1C1C19]">
+              <span className="text-base font-medium text-brand">
                 {label}
               </span>
             </li>

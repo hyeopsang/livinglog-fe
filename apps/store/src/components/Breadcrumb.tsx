@@ -12,7 +12,7 @@ export function Breadcrumb({ slugs }: Props) {
       {crumbs.map((crumb, i) => (
         <span key={crumb.slug} className="flex items-center gap-1.5">
           {i > 0 && <span>/</span>}
-          <span className={i === crumbs.length - 1 ? "text-[#1C1C19] font-medium" : ""}>
+          <span className={i === crumbs.length - 1 ? "text-brand font-medium" : ""}>
             {crumb.label}
           </span>
         </span>

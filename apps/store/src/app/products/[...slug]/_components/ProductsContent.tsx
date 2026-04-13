@@ -65,7 +65,7 @@ export function ProductsContent({ params }: Props) {
           <Breadcrumb slugs={slug} />
 
           <div className="flex flex-col gap-1">
-            <h1 className="text-2xl font-bold text-[#1C1C19]">
+            <h1 className="text-2xl font-bold text-brand">
               {category?.label ?? "상품"}
             </h1>
             <SortBar

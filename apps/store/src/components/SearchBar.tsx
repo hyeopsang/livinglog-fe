@@ -24,10 +24,10 @@ export default function SearchBar() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputGroup className="max-w-112.5 h-13.5 w-full rounded-full bg-[#FCF9F4] px-4 py-2 border-0 outline-none ring-0 shadow-none has-[[data-slot=input-group-control]:focus-visible]:border-transparent has-[[data-slot=input-group-control]:focus-visible]:ring-0">
+      <InputGroup className="max-w-112.5 h-13.5 w-full rounded-full bg-surface px-4 py-2 border-0 outline-none ring-0 shadow-none has-[[data-slot=input-group-control]:focus-visible]:border-transparent has-[[data-slot=input-group-control]:focus-visible]:ring-0">
         <InputGroupAddon align={"inline-start"} className="pr-2">
           <button type="submit">
-            <Search width={18} strokeWidth={1.5} className="text-[#7E766D]" />
+            <Search width={18} strokeWidth={1.5} className="text-subtle" />
           </button>
         </InputGroupAddon>
         <InputGroupInput
@@ -41,7 +41,7 @@ export default function SearchBar() {
             <button
               type="button"
               onClick={() => setValue("")}
-              className="text-neutral-400 hover:text-[#1C1C19] transition-colors"
+              className="text-neutral-400 hover:text-brand transition-colors"
             >
               <X width={16} strokeWidth={1.5} />
             </button>

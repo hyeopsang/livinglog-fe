@@ -15,7 +15,7 @@ interface Props {
   slugs: string[];
 }
 
-export function CategorySidebar({ slugs: [main, sub, leaf] }: Props) {
+export function CategorySidebar({ slugs: [main, sub] }: Props) {
   const [openItems, setOpenItems] = useState<string[]>(sub ? [sub] : []);
 
   useEffect(() => {
@@ -40,8 +40,8 @@ export function CategorySidebar({ slugs: [main, sub, leaf] }: Props) {
                 className={cn(
                   "block pb-3 text-lg font-semibold transition-colors",
                   isActive
-                    ? "text-[#1C1C19]"
-                    : "text-neutral-400 hover:text-[#1C1C19]",
+                    ? "text-brand"
+                    : "text-neutral-400 hover:text-brand",
                 )}
               >
                 {cat.label}
@@ -63,7 +63,7 @@ export function CategorySidebar({ slugs: [main, sub, leaf] }: Props) {
                       <div className="flex items-center justify-between py-1">
                         <Link
                           href={`/products/${cat.slug}/${subCat.slug}`}
-                          className="text-sm text-[#1C1C19] font-medium"
+                          className="text-sm text-brand font-medium"
                         >
                           {subCat.label}
                         </Link>
@@ -90,7 +90,7 @@ export function CategorySidebar({ slugs: [main, sub, leaf] }: Props) {
                               <li key={leafCat.slug}>
                                 <Link
                                   href={`/products/${cat.slug}/${subCat.slug}/${leafCat.slug}`}
-                                  className="block py-2 text-xs text-[#1C1C19] font-medium"
+                                  className="block py-2 text-xs text-brand font-medium"
                                 >
                                   {leafCat.label}
                                 </Link>

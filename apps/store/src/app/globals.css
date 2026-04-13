@@ -48,9 +48,21 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Brand tokens */
+  --color-brand: var(--brand);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-star: var(--star);
 }
 
 :root {
+  /* Brand tokens */
+  --brand: #1c1c19; /* 브랜드 다크: 텍스트·배경·보더 전반 */
+  --surface: #fcf9f4; /* 크림 섹션 배경 */
+  --subtle: #7e766d; /* 워밍 뮤트 아이콘 */
+  --star: #f59e0b; /* 별점 앰버 */
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -86,6 +98,12 @@
 }
 
 .dark {
+  /* Brand tokens */
+  --brand: var(--foreground);
+  --surface: var(--card);
+  --subtle: var(--muted-foreground);
+  --star: #f59e0b;
+
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

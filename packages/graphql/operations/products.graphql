@@ -22,6 +22,28 @@ query GetCategories {
   }
 }
 
+query GetProduct($id: ID!) {
+  product(id: $id) {
+    id
+    brand
+    name
+    originalPrice
+    discountRate
+    rating
+    reviewCount
+    badges
+    imageUrl
+    href
+    categorySlug
+    description
+    images
+    specifications {
+      label
+      value
+    }
+  }
+}
+
 query GetProducts($filter: ProductFilter) {
   products(filter: $filter) {
     items {
