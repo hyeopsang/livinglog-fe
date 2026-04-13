@@ -68,13 +68,11 @@ export function ProductListTemplate({
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col gap-8">
-      {/* 페이지 헤더 */}
       <div className="flex flex-col gap-2">
-        <h1 className="text-xl font-bold text-[#1C1C19]">{title}</h1>
+        <h1 className="text-xl font-bold text-brand">{title}</h1>
         {subtitle && <p className="text-sm text-neutral-400">{subtitle}</p>}
       </div>
 
-      {/* 정렬 + 총 개수 */}
       <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
         <span className="text-sm text-neutral-400">
           총 {total.toLocaleString()}개
@@ -86,8 +84,8 @@ export function ProductListTemplate({
               onClick={() => onSortChange(opt.value)}
               className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
                 sort === opt.value
-                  ? "bg-[#1C1C19] text-white"
-                  : "text-neutral-400 hover:text-[#1C1C19]"
+                  ? "bg-brand text-white"
+                  : "text-neutral-400 hover:text-brand"
               }`}
             >
               {opt.label}
@@ -96,7 +94,6 @@ export function ProductListTemplate({
         </div>
       </div>
 
-      {/* 상품 그리드 */}
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.length > 0 ? (
           products.map((product) => (

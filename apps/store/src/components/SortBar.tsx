@@ -25,8 +25,8 @@ export function SortBar({ total, sort, onSortChange }: Props) {
             onClick={() => onSortChange(opt.value)}
             className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
               sort === opt.value
-                ? "bg-[#1C1C19] text-white"
-                : "text-neutral-400 hover:text-[#1C1C19]"
+                ? "bg-brand text-white"
+                : "text-neutral-400 hover:text-brand"
             }`}
           >
             {opt.label}

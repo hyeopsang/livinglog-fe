@@ -4,6 +4,7 @@ type Query {
   bestsellers: [Product!]!
   categories: [Category!]!
   products(filter: ProductFilter): ProductConnection!
+  product(id: ID!): Product
 }
 
 input ProductFilter {
@@ -70,6 +71,11 @@ enum Badge {
   SHIPPING_FEE
 }
 
+type ProductSpec {
+  label: String!
+  value: String!
+}
+
 type Product {
   id: ID!
   brand: String!
@@ -82,6 +88,9 @@ type Product {
   imageUrl: String!
   href: String!
   categorySlug: String!
+  description: String
+  images: [String!]!
+  specifications: [ProductSpec!]!
 }
 
 type Category {

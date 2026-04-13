@@ -12,21 +12,21 @@ export default function BestsellerSection() {
   const products = data?.bestsellers ?? [];
 
   return (
-    <section className="w-full py-12 px-6 bg-[#FCF9F4]">
+    <section className="w-full py-12 px-6 bg-surface">
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         <div className="flex items-end justify-between">
           <div className="flex flex-col gap-2">
             <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
               Best Seller
             </span>
-            <p className="text-2xl font-bold text-[#1C1C19]">베스트 셀러</p>
+            <p className="text-2xl font-bold text-brand">베스트 셀러</p>
             <p className="text-base text-neutral-500 mt-1">
               Livinglog의 철학을 담은 제품 — 기능성과 시간이 만들어내는 아름다움
             </p>
           </div>
           <Link
             href="/"
-            className="text-sm font-medium text-neutral-400 hover:text-[#1C1C19] transition-colors underline-offset-4 hover:underline"
+            className="text-sm font-medium text-neutral-400 hover:text-brand transition-colors underline-offset-4 hover:underline"
           >
             전체보기
           </Link>
@@ -51,7 +51,7 @@ export default function BestsellerSection() {
                 return (
                   <li key={product.id}>
                     <Link
-                      href={product.href}
+                      href={`/product/${product.id}`}
                       className="group flex flex-col gap-3"
                     >
                       <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-neutral-100">
@@ -63,7 +63,7 @@ export default function BestsellerSection() {
                           className="transition-transform duration-500 group-hover:scale-105"
                         />
                         {product.discountRate > 0 && (
-                          <span className="absolute top-3 left-3 bg-[#1C1C19] text-white text-xs font-bold px-2 py-1 rounded-md">
+                          <span className="absolute top-3 left-3 bg-brand text-white text-xs font-bold px-2 py-1 rounded-md">
                             -{product.discountRate}%
                           </span>
                         )}
@@ -73,11 +73,11 @@ export default function BestsellerSection() {
                         <span className="text-xs font-medium text-neutral-400">
                           {product.brand}
                         </span>
-                        <p className="text-sm font-medium text-[#1C1C19] leading-snug line-clamp-2">
+                        <p className="text-sm font-medium text-brand leading-snug line-clamp-2">
                           {product.name}
                         </p>
                         <div className="flex items-baseline gap-2 mt-0.5">
-                          <span className="text-base font-bold text-[#1C1C19]">
+                          <span className="text-base font-bold text-brand">
                             {formatPrice(discountedPrice)}원
                           </span>
                           <span className="text-xs text-neutral-400 line-through">

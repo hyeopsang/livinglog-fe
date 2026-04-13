@@ -30,7 +30,7 @@ export default function MainBanner() {
               당신의 공간을 완성하는 프리미엄 라이프스타일 컬렉션
             </p>
             <div className="flex gap-4 items-center">
-              <Button className="bg-white text-[#1C1C19] rounded-[8px] px-8 py-4 font-semibold hover:bg-white/90 transition-colors">
+              <Button className="bg-white text-brand rounded-[8px] px-8 py-4 font-semibold hover:bg-white/90 transition-colors">
                 상품 보기
               </Button>
               <Button className="bg-transparent text-white border border-white/50 rounded-[8px] px-8 py-4 font-semibold hover:bg-white/10 transition-colors">

@@ -1,17 +1,29 @@
-import { type Product } from "@livinglog/graphql";
+import { type Badge } from "@livinglog/graphql";
 import Image from "next/image";
 import Link from "next/link";
 import { BADGE_CONFIG } from "@/lib/badge";
 import { formatPrice } from "@/lib/utils";
 import { StarRating } from "@/app/(home)/_components/StarRating";
 
-export function ProductCard({ product }: { product: Omit<Product, "__typename"> }) {
+interface ProductCardProps {
+  id: string;
+  brand: string;
+  name: string;
+  originalPrice: number;
+  discountRate: number;
+  rating: number;
+  reviewCount: number;
+  badges: Badge[];
+  imageUrl: string;
+}
+
+export function ProductCard({ product }: { product: ProductCardProps }) {
   const discountedPrice = Math.round(
     product.originalPrice * (1 - product.discountRate / 100)
   );
 
   return (
-    <Link href={product.href} className="group flex flex-col gap-3">
+    <Link href={`/product/${product.id}`} className="group flex flex-col gap-3">
       <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-neutral-100">
         <Image
           src={product.imageUrl}
@@ -21,7 +33,7 @@ export function ProductCard({ product }: { product: Omit<Product, "__typename"> 
           className="transition-transform duration-500 group-hover:scale-105"
         />
         {product.discountRate > 0 && (
-          <span className="absolute top-3 left-3 bg-[#1C1C19] text-white text-xs font-bold px-2 py-1 rounded-md">
+          <span className="absolute top-3 left-3 bg-brand text-white text-xs font-bold px-2 py-1 rounded-md">
             -{product.discountRate}%
           </span>
         )}
@@ -29,11 +41,11 @@ export function ProductCard({ product }: { product: Omit<Product, "__typename"> 
 
       <div className="flex flex-col gap-1.5">
         <span className="text-xs font-medium text-neutral-400">{product.brand}</span>
-        <p className="text-sm font-medium text-[#1C1C19] leading-snug line-clamp-2">
+        <p className="text-sm font-medium text-brand leading-snug line-clamp-2">
           {product.name}
         </p>
         <div className="flex items-baseline gap-2 mt-0.5">
-          <span className="text-base font-bold text-[#1C1C19]">
+          <span className="text-base font-bold text-brand">
             {formatPrice(discountedPrice)}원
           </span>
           {product.discountRate > 0 && (
