@@ -9,6 +9,7 @@ import { ProductImageGallery } from "./ProductImageGallery";
 import { ProductInfo } from "./ProductInfo";
 import { ProductTabs } from "./ProductTabs";
 import { notFound } from "next/navigation";
+import { ProductDetailSkeleton } from "./ProductDetailSkeleton";
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -130,23 +131,3 @@ function ErrorState({ message }: { message: string }) {
   );
 }
 
-function ProductDetailSkeleton() {
-  return (
-    <div className="max-w-7xl mx-auto px-6 py-10 animate-pulse">
-      <div className="h-4 bg-neutral-100 rounded w-64 mb-8" />
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div className="aspect-square rounded-3xl bg-neutral-100" />
-        <div className="flex flex-col gap-5">
-          <div className="h-4 bg-neutral-100 rounded w-24" />
-          <div className="h-8 bg-neutral-100 rounded w-3/4" />
-          <div className="h-4 bg-neutral-100 rounded w-40" />
-          <div className="h-px bg-neutral-100" />
-          <div className="h-10 bg-neutral-100 rounded w-48" />
-          <div className="h-10 bg-neutral-100 rounded w-36" />
-          <div className="h-16 bg-neutral-100 rounded-2xl" />
-          <div className="h-14 bg-neutral-100 rounded-2xl" />
-        </div>
-      </div>
-    </div>
-  );
-}
