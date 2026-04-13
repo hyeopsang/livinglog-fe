@@ -28,11 +28,15 @@ export const useCartStore = create<CartStore>((set) => ({
 
   addItem: (item) =>
     set((state) => {
+      if (item.quantity <= 0) return state;
       const existing = state.byId[item.id];
       if (existing) {
         const newQty = existing.quantity + item.quantity;
         return {
-          byId: { ...state.byId, [item.id]: { ...existing, quantity: newQty } },
+          byId: {
+            ...state.byId,
+            [item.id]: { ...existing, ...item, quantity: newQty },
+          },
           totalCount: state.totalCount + item.quantity,
         };
       }
@@ -57,6 +61,7 @@ export const useCartStore = create<CartStore>((set) => ({
 
   updateQuantity: (id, quantity) =>
     set((state) => {
+      if (quantity <= 0) return state;
       const item = state.byId[id];
       if (!item) return state;
       return {

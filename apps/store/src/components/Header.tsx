@@ -74,10 +74,17 @@ export default function Header() {
         <SearchBar />
         <ul className="flex items-center gap-5 shrink-0 text-neutral-500">
           <li>
-            <Link href="/cart" className="relative hover:text-brand transition-colors">
-              <ShoppingCart strokeWidth={1.5} size={20} />
+            <Link
+              href="/cart"
+              aria-label={totalCount > 0 ? `장바구니, ${totalCount}개` : "장바구니"}
+              className="relative hover:text-brand transition-colors"
+            >
+              <ShoppingCart strokeWidth={1.5} size={20} aria-hidden />
               {totalCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 min-w-4 h-4 px-0.5 flex items-center justify-center rounded-full bg-brand text-white text-[10px] font-bold leading-none">
+                <span
+                  aria-hidden="true"
+                  className="absolute -top-1.5 -right-1.5 min-w-4 h-4 px-0.5 flex items-center justify-center rounded-full bg-brand text-white text-[10px] font-bold leading-none"
+                >
                   {totalCount > 99 ? "99+" : totalCount}
                 </span>
               )}

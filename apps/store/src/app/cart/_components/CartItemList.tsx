@@ -12,6 +12,7 @@ export function CartItemList() {
       <div className="flex items-center justify-between mb-2">
         <span className="text-sm text-neutral-400">{ids.length}개 상품</span>
         <button
+          type="button"
           onClick={clearCart}
           className="text-sm text-neutral-400 hover:text-brand transition-colors"
         >
