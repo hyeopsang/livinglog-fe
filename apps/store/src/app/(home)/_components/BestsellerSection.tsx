@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BADGE_CONFIG } from "@/lib/badge";
 import { formatPrice } from "@/lib/utils";
 import { StarRating } from "./StarRating";
+import { BestsellerSkeleton } from "./BestsellerSkeleton";
 
 export default function BestsellerSection() {
   const { data, loading } = useGetBestsellersQuery();
@@ -32,19 +33,11 @@ export default function BestsellerSection() {
           </Link>
         </div>
 
+        {loading ? (
+          <BestsellerSkeleton />
+        ) : (
         <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {loading
-            ? Array.from({ length: 4 }).map((_, i) => (
-                <li key={i} className="flex flex-col gap-3 animate-pulse">
-                  <div className="w-full aspect-square rounded-2xl bg-neutral-200" />
-                  <div className="flex flex-col gap-2">
-                    <div className="h-3 w-16 bg-neutral-200 rounded" />
-                    <div className="h-4 w-full bg-neutral-200 rounded" />
-                    <div className="h-4 w-2/3 bg-neutral-200 rounded" />
-                  </div>
-                </li>
-              ))
-            : products.map((product) => {
+          {products.map((product) => {
                 const discountedPrice = Math.round(
                   product.originalPrice * (1 - product.discountRate / 100),
                 );
@@ -111,6 +104,7 @@ export default function BestsellerSection() {
                 );
               })}
         </ul>
+        )}
       </div>
     </section>
   );
