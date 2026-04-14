@@ -5,7 +5,9 @@ import {
   GetCategoriesDocument,
   GetProductDocument,
   GetProductsDocument,
+  // GetMyOrdersDocument, // codegen 실행 후 주석 해제
 } from "@livinglog/graphql";
+import { MOCK_ORDERS } from "@/app/profile/_types/order";
 
 const PRODUCTS = [
   {
@@ -30,12 +32,32 @@ const PRODUCTS = [
       "/bestseller/best03.avif",
     ],
     specifications: [
-      { __typename: "ProductSpec" as const, label: "소재", value: "폴리에스터 패브릭, 합판" },
-      { __typename: "ProductSpec" as const, label: "색상", value: "아이보리, 그레이, 네이비" },
-      { __typename: "ProductSpec" as const, label: "사이즈", value: "퀸(160×200), 킹(180×200)" },
-      { __typename: "ProductSpec" as const, label: "높이", value: "헤드보드 110cm" },
+      {
+        __typename: "ProductSpec" as const,
+        label: "소재",
+        value: "폴리에스터 패브릭, 합판",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "색상",
+        value: "아이보리, 그레이, 네이비",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "사이즈",
+        value: "퀸(160×200), 킹(180×200)",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "높이",
+        value: "헤드보드 110cm",
+      },
       { __typename: "ProductSpec" as const, label: "무게", value: "35kg" },
-      { __typename: "ProductSpec" as const, label: "배송", value: "무료배송 (2~3일 이내)" },
+      {
+        __typename: "ProductSpec" as const,
+        label: "배송",
+        value: "무료배송 (2~3일 이내)",
+      },
     ],
   },
   {
@@ -60,12 +82,32 @@ const PRODUCTS = [
       "/bestseller/best04.avif",
     ],
     specifications: [
-      { __typename: "ProductSpec" as const, label: "소재", value: "알루미늄, 스틸" },
-      { __typename: "ProductSpec" as const, label: "색상", value: "블랙, 골드, 실버" },
-      { __typename: "ProductSpec" as const, label: "높이", value: "140~180cm (조절 가능)" },
-      { __typename: "ProductSpec" as const, label: "전구", value: "E26 소켓 (별도 구매)" },
+      {
+        __typename: "ProductSpec" as const,
+        label: "소재",
+        value: "알루미늄, 스틸",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "색상",
+        value: "블랙, 골드, 실버",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "높이",
+        value: "140~180cm (조절 가능)",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "전구",
+        value: "E26 소켓 (별도 구매)",
+      },
       { __typename: "ProductSpec" as const, label: "전압", value: "220V" },
-      { __typename: "ProductSpec" as const, label: "배송", value: "무료배송 (3~5일 이내)" },
+      {
+        __typename: "ProductSpec" as const,
+        label: "배송",
+        value: "무료배송 (3~5일 이내)",
+      },
     ],
   },
   {
@@ -90,12 +132,36 @@ const PRODUCTS = [
       "/bestseller/best02.avif",
     ],
     specifications: [
-      { __typename: "ProductSpec" as const, label: "소재", value: "냉연 강판 (분체도장)" },
-      { __typename: "ProductSpec" as const, label: "색상", value: "화이트, 블랙" },
-      { __typename: "ProductSpec" as const, label: "크기", value: "W900×D450×H1800mm" },
-      { __typename: "ProductSpec" as const, label: "단 수", value: "5단 (높이 조절 가능)" },
-      { __typename: "ProductSpec" as const, label: "내하중", value: "단당 80kg" },
-      { __typename: "ProductSpec" as const, label: "배송", value: "배송비 별도 (3,000원)" },
+      {
+        __typename: "ProductSpec" as const,
+        label: "소재",
+        value: "냉연 강판 (분체도장)",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "색상",
+        value: "화이트, 블랙",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "크기",
+        value: "W900×D450×H1800mm",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "단 수",
+        value: "5단 (높이 조절 가능)",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "내하중",
+        value: "단당 80kg",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "배송",
+        value: "배송비 별도 (3,000원)",
+      },
     ],
   },
   {
@@ -120,12 +186,36 @@ const PRODUCTS = [
       "/bestseller/best01.avif",
     ],
     specifications: [
-      { __typename: "ProductSpec" as const, label: "소재", value: "ABS 플라스틱, 메탈" },
-      { __typename: "ProductSpec" as const, label: "색상", value: "블랙, 화이트" },
-      { __typename: "ProductSpec" as const, label: "크기", value: "W150×D60×H100mm" },
-      { __typename: "ProductSpec" as const, label: "전원", value: "USB-C 또는 AA건전지 2개" },
-      { __typename: "ProductSpec" as const, label: "기능", value: "시간, 날짜, 알람" },
-      { __typename: "ProductSpec" as const, label: "배송", value: "무료배송 (1~2일 이내)" },
+      {
+        __typename: "ProductSpec" as const,
+        label: "소재",
+        value: "ABS 플라스틱, 메탈",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "색상",
+        value: "블랙, 화이트",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "크기",
+        value: "W150×D60×H100mm",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "전원",
+        value: "USB-C 또는 AA건전지 2개",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "기능",
+        value: "시간, 날짜, 알람",
+      },
+      {
+        __typename: "ProductSpec" as const,
+        label: "배송",
+        value: "무료배송 (1~2일 이내)",
+      },
     ],
   },
 ];
@@ -211,4 +301,11 @@ export function seedMockData(client: ApolloClient<NormalizedCacheObject>) {
       data: { product },
     });
   }
+
+  // GraphQL 연결 시 GetMyOrdersDocument 주석 지우기
+  // client.writeQuery({
+  //   query: GetMyOrdersDocument,
+  //   data: { myOrders: MOCK_ORDERS },
+  // });
+  void MOCK_ORDERS; // codegen 연결 후 writeQuery로 교체
 }

@@ -1,0 +1,50 @@
+query GetMyOrders {
+  myOrders {
+    id
+    orderNumber
+    status
+    totalPrice
+    orderedAt
+    items {
+      id
+      quantity
+      price
+      product {
+        id
+        name
+        brand
+        imageUrl
+      }
+    }
+  }
+}
+
+query GetOrder($id: ID!) {
+  order(id: $id) {
+    id
+    orderNumber
+    status
+    totalPrice
+    orderedAt
+    updatedAt
+    items {
+      id
+      quantity
+      price
+      product {
+        id
+        name
+        brand
+        imageUrl
+      }
+    }
+  }
+}
+
+mutation CancelOrder($id: ID!) {
+  cancelOrder(id: $id) {
+    id
+    status
+    updatedAt
+  }
+}
