@@ -91,7 +91,7 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/profile" className="hover:text-brand transition-colors">
+            <Link href="/profile" aria-label="내 계정" className="hover:text-brand transition-colors">
               <UserRound strokeWidth={1.5} size={20} />
             </Link>
           </li>
