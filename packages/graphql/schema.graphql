@@ -5,6 +5,8 @@ type Query {
   categories: [Category!]!
   products(filter: ProductFilter): ProductConnection!
   product(id: ID!): Product
+  myOrders: [Order!]!
+  order(id: ID!): Order
 }
 
 input ProductFilter {
@@ -35,6 +37,7 @@ type ProductConnection {
 type Mutation {
   login(input: LoginInput!): AuthPayload!
   logout: Boolean!
+  cancelOrder(id: ID!): Order!
 }
 
 type Subscription {
@@ -63,6 +66,31 @@ input LoginInput {
 enum UserRole {
   ADMIN
   USER
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPING
+  DELIVERED
+  CANCELLED
+}
+
+type OrderItem {
+  id: ID!
+  product: Product!
+  quantity: Int!
+  price: Int!
+}
+
+type Order {
+  id: ID!
+  orderNumber: String!
+  status: OrderStatus!
+  items: [OrderItem!]!
+  totalPrice: Int!
+  orderedAt: String!
+  updatedAt: String!
 }
 
 enum Badge {

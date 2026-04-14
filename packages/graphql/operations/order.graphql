@@ -1,0 +1,47 @@
+fragment ProductFields on Product {
+  id
+  name
+  brand
+  imageUrl
+}
+
+fragment OrderItemFields on OrderItem {
+  id
+  quantity
+  price
+  product {
+    ...ProductFields
+  }
+}
+
+fragment OrderFields on Order {
+  id
+  orderNumber
+  status
+  totalPrice
+  orderedAt
+  items {
+    ...OrderItemFields
+  }
+}
+
+query GetMyOrders {
+  myOrders {
+    ...OrderFields
+  }
+}
+
+query GetOrder($id: ID!) {
+  order(id: $id) {
+    ...OrderFields
+    updatedAt
+  }
+}
+
+mutation CancelOrder($id: ID!) {
+  cancelOrder(id: $id) {
+    id
+    status
+    updatedAt
+  }
+}
