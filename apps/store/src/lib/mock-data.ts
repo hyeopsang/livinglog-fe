@@ -5,9 +5,8 @@ import {
   GetCategoriesDocument,
   GetProductDocument,
   GetProductsDocument,
-  // GetMyOrdersDocument, // codegen 실행 후 주석 해제
+  // GetMyOrdersDocument,
 } from "@livinglog/graphql";
-import { MOCK_ORDERS } from "@/app/profile/_types/order";
 
 const PRODUCTS = [
   {
@@ -302,10 +301,9 @@ export function seedMockData(client: ApolloClient<NormalizedCacheObject>) {
     });
   }
 
-  // GraphQL 연결 시 GetMyOrdersDocument 주석 지우기
-  // client.writeQuery({
-  //   query: GetMyOrdersDocument,
-  //   data: { myOrders: MOCK_ORDERS },
-  // });
-  void MOCK_ORDERS; // codegen 연결 후 writeQuery로 교체
+  // TODO: GraphQL 서버 연결 후 아래 작업 수행
+  // 1. pnpm codegen 실행
+  // 2. GetMyOrdersDocument import 추가
+  // 3. MOCK_ORDERS를 lib/mock-orders.ts 등 공유 모듈로 이동
+  // 4. client.writeQuery({ query: GetMyOrdersDocument, data: { myOrders: MOCK_ORDERS } }) 추가
 }

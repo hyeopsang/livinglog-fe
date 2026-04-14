@@ -8,7 +8,7 @@ import { ProfileSidebar } from "./ProfileSidebar";
 import { OrderHistory } from "./OrderHistory";
 import { AccountSettings } from "./AccountSettings";
 
-type Tab = "orders" | "wishlist" | "settings";
+import type { Tab } from "../_types/tab";
 
 function Wishlist() {
   return (

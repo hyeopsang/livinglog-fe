@@ -8,6 +8,15 @@ import { formatPrice } from "@/lib/utils";
 import { StatusBadge } from "./StatusBadge";
 import type { Order, OrderItem } from "../_types/order";
 
+export interface OrderCardCallbacks {
+  onViewOrder?: (orderId: string) => void;
+  onWriteReview?: (orderId: string) => void;
+  onCancelOrder?: (orderId: string) => void;
+  onTrackShipment?: (orderId: string) => void;
+  onReorder?: (orderId: string) => void;
+  onReturnExchange?: (orderId: string, type: "return" | "exchange") => void;
+}
+
 function OrderCardHeader({ order }: { order: Order }) {
   return (
     <div className="flex items-center justify-between px-5 py-3.5 bg-surface">
@@ -25,11 +34,13 @@ function OrderCardItem({
   extraCount,
   totalPrice,
   showReview,
+  onWriteReview,
 }: {
   item: OrderItem;
   extraCount: number;
   totalPrice: number;
   showReview: boolean;
+  onWriteReview?: () => void;
 }) {
   const { product } = item;
 
@@ -58,7 +69,10 @@ function OrderCardItem({
       </div>
 
       {showReview && (
-        <button className="shrink-0 flex items-center gap-1 text-xs text-neutral-400 hover:text-brand transition-colors mt-0.5">
+        <button
+          onClick={onWriteReview}
+          className="shrink-0 flex items-center gap-1 text-xs text-neutral-400 hover:text-brand transition-colors mt-0.5"
+        >
           리뷰 작성
           <ChevronRight size={13} />
         </button>
@@ -67,12 +81,17 @@ function OrderCardItem({
   );
 }
 
-function OrderCardActions({ order }: { order: Order }) {
+function OrderCardActions({
+  order,
+  callbacks,
+}: {
+  order: Order;
+  callbacks: OrderCardCallbacks;
+}) {
   const isCancellable = order.status === "PENDING" || order.status === "CONFIRMED";
   const isDelivered = order.status === "DELIVERED";
   const isShipping = order.status === "SHIPPING";
-
-  if (!isCancellable && !isDelivered && !isShipping) return null;
+  const { onViewOrder, onCancelOrder, onTrackShipment, onReorder, onReturnExchange } = callbacks;
 
   const actionBtn = "rounded-2xl h-8 px-4 text-xs";
 
@@ -80,31 +99,70 @@ function OrderCardActions({ order }: { order: Order }) {
     <div className="px-5 pb-4 flex gap-2">
       {isDelivered && (
         <>
-          <Button variant="outline" size="sm" className={actionBtn}>재구매</Button>
-          <Button variant="outline" size="sm" className={actionBtn}>반품 신청</Button>
-          <Button variant="outline" size="sm" className={actionBtn}>교환 신청</Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className={actionBtn}
+            onClick={() => onReorder?.(order.id)}
+          >
+            재구매
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className={actionBtn}
+            onClick={() => onReturnExchange?.(order.id, "return")}
+          >
+            반품 신청
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className={actionBtn}
+            onClick={() => onReturnExchange?.(order.id, "exchange")}
+          >
+            교환 신청
+          </Button>
         </>
       )}
       {isShipping && (
-        <Button variant="outline" size="sm" className={actionBtn}>배송 조회</Button>
+        <Button
+          variant="outline"
+          size="sm"
+          className={actionBtn}
+          onClick={() => onTrackShipment?.(order.id)}
+        >
+          배송 조회
+        </Button>
       )}
       {isCancellable && (
         <Button
           variant="outline"
           size="sm"
           className={`${actionBtn} text-destructive border-destructive/30 hover:bg-destructive/5`}
+          onClick={() => onCancelOrder?.(order.id)}
         >
           주문 취소
         </Button>
       )}
-      <Button variant="ghost" size="sm" className={`${actionBtn} text-neutral-400`}>
+      <Button
+        variant="ghost"
+        size="sm"
+        className={`${actionBtn} text-neutral-400`}
+        onClick={() => onViewOrder?.(order.id)}
+      >
         주문 상세
       </Button>
     </div>
   );
 }
 
-export function OrderCard({ order }: { order: Order }) {
+interface OrderCardProps {
+  order: Order;
+  callbacks?: OrderCardCallbacks;
+}
+
+export function OrderCard({ order, callbacks = {} }: OrderCardProps) {
   if (!order.items.length) return null;
 
   const firstItem = order.items[0];
@@ -118,8 +176,9 @@ export function OrderCard({ order }: { order: Order }) {
         extraCount={order.items.length - 1}
         totalPrice={order.totalPrice}
         showReview={order.status === "DELIVERED"}
+        onWriteReview={() => callbacks.onWriteReview?.(order.id)}
       />
-      <OrderCardActions order={order} />
+      <OrderCardActions order={order} callbacks={callbacks} />
     </li>
   );
 }

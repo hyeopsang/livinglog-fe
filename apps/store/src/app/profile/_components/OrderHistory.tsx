@@ -43,6 +43,7 @@ export function OrderHistoryError({ onRetry }: { onRetry: () => void }) {
       </p>
       <p className="text-sm text-neutral-400">잠시 후 다시 시도해주세요</p>
       <button
+        type="button"
         onClick={onRetry}
         className="text-sm text-brand underline underline-offset-2 mt-1 hover:opacity-70 transition-opacity"
       >

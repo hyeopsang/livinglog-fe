@@ -1,43 +1,40 @@
+fragment ProductFields on Product {
+  id
+  name
+  brand
+  imageUrl
+}
+
+fragment OrderItemFields on OrderItem {
+  id
+  quantity
+  price
+  product {
+    ...ProductFields
+  }
+}
+
+fragment OrderFields on Order {
+  id
+  orderNumber
+  status
+  totalPrice
+  orderedAt
+  items {
+    ...OrderItemFields
+  }
+}
+
 query GetMyOrders {
   myOrders {
-    id
-    orderNumber
-    status
-    totalPrice
-    orderedAt
-    items {
-      id
-      quantity
-      price
-      product {
-        id
-        name
-        brand
-        imageUrl
-      }
-    }
+    ...OrderFields
   }
 }
 
 query GetOrder($id: ID!) {
   order(id: $id) {
-    id
-    orderNumber
-    status
-    totalPrice
-    orderedAt
+    ...OrderFields
     updatedAt
-    items {
-      id
-      quantity
-      price
-      product {
-        id
-        name
-        brand
-        imageUrl
-      }
-    }
   }
 }
 

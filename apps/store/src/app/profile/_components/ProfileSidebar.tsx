@@ -3,8 +3,7 @@
 import { ClipboardList, Heart, Settings, UserRound } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@livinglog/ui";
-
-type Tab = "orders" | "wishlist" | "settings";
+import type { Tab } from "../_types/tab";
 
 const MOCK_USER = {
   name: "김민준",
@@ -50,6 +49,7 @@ export function ProfileSidebar({
               {idx > 0 && <Separator />}
               <button
                 onClick={() => onTabChange(tab)}
+                aria-current={activeTab === tab ? "page" : undefined}
                 className={cn(
                   "w-full flex items-center gap-3 px-5 py-4 text-sm font-medium transition-colors",
                   activeTab === tab
