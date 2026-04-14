@@ -19,7 +19,7 @@ export function CartItemRow({ id }: { id: string }) {
   return (
     <li className="flex gap-4 py-6">
       <Link href={`/product/${item.id}`} className="shrink-0">
-        <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-neutral-100">
+        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden bg-neutral-100">
           <Image src={item.imageUrl} alt={item.name} fill style={{ objectFit: "cover" }} />
         </div>
       </Link>

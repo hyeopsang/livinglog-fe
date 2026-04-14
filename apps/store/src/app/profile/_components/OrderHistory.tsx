@@ -57,7 +57,7 @@ function OrderList({ orders }: { orders: Order[] }) {
   if (orders.length === 0) return <EmptyOrderHistory />;
 
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="w-full flex flex-col gap-3">
       {orders.map((order) => (
         <OrderCard key={order.id} order={order} />
       ))}
@@ -66,7 +66,6 @@ function OrderList({ orders }: { orders: Order[] }) {
 }
 
 export function OrderHistory() {
-  // ─── GraphQL 연결 후 이 블록으로 교체 ────────────────────────────────────
   // const { data, loading, error, refetch } = useGetMyOrdersQuery({
   //   fetchPolicy: "cache-and-network",
   // });
@@ -75,12 +74,11 @@ export function OrderHistory() {
   // if (error) return <section className="flex flex-col gap-4"><h2 className="text-base font-bold text-brand">주문 내역</h2><OrderHistoryError onRetry={refetch} /></section>;
   //
   // const orders = data?.myOrders ?? [];
-  // ─────────────────────────────────────────────────────────────────────────
 
   const orders = MOCK_ORDERS;
 
   return (
-    <section className="flex flex-col gap-4">
+    <section className="w-full flex flex-col gap-4">
       <h2 className="text-base font-bold text-brand">주문 내역</h2>
       <OrderList orders={orders} />
     </section>
