@@ -24,7 +24,9 @@ function OrderCardHeader({ order }: { order: Order }) {
         <StatusBadge status={order.status} />
         <span className="text-xs text-neutral-400">{order.orderedAt}</span>
       </div>
-      <span className="text-xs text-neutral-400 font-mono">{order.orderNumber}</span>
+      <span className="text-xs text-neutral-400 font-mono">
+        {order.orderNumber}
+      </span>
     </div>
   );
 }
@@ -48,7 +50,12 @@ function OrderCardItem({
     <div className="px-5 py-4 flex gap-4 items-start">
       <Link href={`/product/${product.id}`} className="shrink-0">
         <div className="relative w-20 h-20 rounded-2xl overflow-hidden bg-neutral-100">
-          <Image src={product.imageUrl} alt={product.name} fill style={{ objectFit: "cover" }} />
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            style={{ objectFit: "cover" }}
+          />
         </div>
       </Link>
 
@@ -61,7 +68,9 @@ function OrderCardItem({
           {product.name}
         </Link>
         {extraCount > 0 && (
-          <span className="text-xs text-neutral-400">외 {extraCount}개 상품</span>
+          <span className="text-xs text-neutral-400">
+            외 {extraCount}개 상품
+          </span>
         )}
         <span className="text-sm font-bold text-brand mt-0.5">
           {formatPrice(totalPrice)}원
@@ -88,10 +97,17 @@ function OrderCardActions({
   order: Order;
   callbacks: OrderCardCallbacks;
 }) {
-  const isCancellable = order.status === "PENDING" || order.status === "CONFIRMED";
+  const isCancellable =
+    order.status === "PENDING" || order.status === "CONFIRMED";
   const isDelivered = order.status === "DELIVERED";
   const isShipping = order.status === "SHIPPING";
-  const { onViewOrder, onCancelOrder, onTrackShipment, onReorder, onReturnExchange } = callbacks;
+  const {
+    onViewOrder,
+    onCancelOrder,
+    onTrackShipment,
+    onReorder,
+    onReturnExchange,
+  } = callbacks;
 
   const actionBtn = "rounded-2xl h-8 px-4 text-xs";
 
@@ -169,7 +185,7 @@ export function OrderCard({ order, callbacks = {} }: OrderCardProps) {
   if (!firstItem) return null;
 
   return (
-    <li className="rounded-3xl border border-neutral-100 overflow-hidden">
+    <li className="w-full rounded-3xl border border-neutral-100 overflow-hidden">
       <OrderCardHeader order={order} />
       <OrderCardItem
         item={firstItem}

@@ -41,7 +41,7 @@ export function ProductInfo({
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <span className="text-sm font-medium text-muted-foreground">{brand}</span>
-        <h1 className="text-2xl font-bold text-foreground leading-snug">{name}</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-foreground leading-snug">{name}</h1>
       </div>
 
       <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export function ProductInfo({
           {discountRate > 0 && (
             <span className="text-xl font-bold text-destructive">{discountRate}%</span>
           )}
-          <span className="text-3xl font-bold text-foreground">
+          <span className="text-2xl md:text-3xl font-bold text-foreground">
             {formatPrice(discountedPrice)}원
           </span>
         </div>

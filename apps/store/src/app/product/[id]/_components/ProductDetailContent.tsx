@@ -55,10 +55,10 @@ export function ProductDetailContent({ params }: Props) {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="max-w-7xl w-full mx-auto px-4 md:px-6 py-6 md:py-10">
       <nav
         aria-label="breadcrumb"
-        className="flex items-center gap-1.5 text-sm text-neutral-400 mb-8"
+        className="flex items-center gap-1.5 text-sm text-neutral-400 mb-6 md:mb-8"
       >
         <Link href="/" className="hover:text-brand transition-colors">
           홈
@@ -79,7 +79,7 @@ export function ProductDetailContent({ params }: Props) {
         </span>
       </nav>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 mb-10 md:mb-16">
         <ProductImageGallery
           images={images}
           name={product.name}
@@ -98,7 +98,7 @@ export function ProductDetailContent({ params }: Props) {
         />
       </div>
 
-      <div className="mb-16">
+      <div className="mb-10 md:mb-16">
         <ProductTabs
           description={product.description}
           specifications={product.specifications}
@@ -119,7 +119,7 @@ export function ProductDetailContent({ params }: Props) {
 
 function ErrorState({ message }: { message: string }) {
   return (
-    <div className="max-w-7xl mx-auto px-6 py-24 flex flex-col items-center gap-4 text-center">
+    <div className="max-w-7xl w-full mx-auto px-6 py-24 flex flex-col items-center gap-4 text-center">
       <p className="text-neutral-400 text-lg">{message}</p>
       <Link
         href="/"
@@ -130,4 +130,3 @@ function ErrorState({ message }: { message: string }) {
     </div>
   );
 }
-

@@ -18,7 +18,7 @@ const items: InspirationItem[] = [
     alt: "inspiration 01",
     user: "@livinglog",
     location: "서울",
-    gridClass: "col-span-2 row-span-2",
+    gridClass: "col-span-1 lg:col-span-2 lg:row-span-2",
     aspectClass: "aspect-square",
   },
   {
@@ -27,7 +27,7 @@ const items: InspirationItem[] = [
     alt: "inspiration 02",
     user: "@livinglog",
     location: "부산",
-    gridClass: "col-span-1 row-span-1",
+    gridClass: "col-span-1",
     aspectClass: "aspect-square",
   },
   {
@@ -35,7 +35,7 @@ const items: InspirationItem[] = [
     src: "/inspiration/03.avif",
     alt: "inspiration 03",
     user: "@livinglog",
-    gridClass: "col-span-1 row-span-2",
+    gridClass: "col-span-1 lg:row-span-2",
     aspectClass: "aspect-square",
   },
   {
@@ -44,7 +44,7 @@ const items: InspirationItem[] = [
     alt: "inspiration 04",
     user: "@livinglog",
     location: "제주",
-    gridClass: "col-span-1 row-span-1",
+    gridClass: "col-span-1",
     aspectClass: "aspect-square",
   },
   {
@@ -52,7 +52,7 @@ const items: InspirationItem[] = [
     src: "/inspiration/05.avif",
     alt: "inspiration 05",
     user: "@livinglog",
-    gridClass: "col-span-1 row-span-1",
+    gridClass: "col-span-1",
     aspectClass: "aspect-square",
   },
   {
@@ -61,7 +61,7 @@ const items: InspirationItem[] = [
     alt: "inspiration 06",
     user: "@livinglog",
     location: "대구",
-    gridClass: "col-span-2 row-span-1",
+    gridClass: "col-span-2 lg:col-span-2",
     aspectClass: "aspect-video",
   },
   {
@@ -69,16 +69,16 @@ const items: InspirationItem[] = [
     src: "/inspiration/07.avif",
     alt: "inspiration 07",
     user: "@livinglog",
-    gridClass: "col-span-1 row-span-1",
+    gridClass: "col-span-1",
     aspectClass: "aspect-square",
   },
 ];
 
 export default function InspirationSection() {
   return (
-    <section className="w-full py-12 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col gap-10">
-        <div className="flex items-end justify-between">
+    <section className="w-full py-10 px-4 md:py-12 md:px-6">
+      <div className="max-w-7xl w-full mx-auto flex flex-col gap-8 md:gap-10">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-2">
             <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
               Inspiration
@@ -92,12 +92,12 @@ export default function InspirationSection() {
           </div>
           <Link
             href="/"
-            className="text-sm font-medium text-neutral-400 hover:text-brand transition-colors underline-offset-4 hover:underline"
+            className="text-sm font-medium text-neutral-400 hover:text-brand transition-colors underline-offset-4 hover:underline self-start md:self-auto"
           >
             더 보기
           </Link>
         </div>
-        <div className="grid grid-cols-4 grid-rows-3 gap-3 auto-rows-fr">
+        <div className="grid grid-cols-2 lg:grid-cols-4 lg:grid-rows-3 gap-3 auto-rows-fr">
           {items.map((item) => (
             <Link
               key={item.id}

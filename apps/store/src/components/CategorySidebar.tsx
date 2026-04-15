@@ -13,9 +13,10 @@ import { CATEGORIES } from "@/lib/categories";
 
 interface Props {
   slugs: string[];
+  onNavigate?: () => void;
 }
 
-export function CategorySidebar({ slugs: [main, sub] }: Props) {
+export function CategorySidebar({ slugs: [main, sub], onNavigate }: Props) {
   const [openItems, setOpenItems] = useState<string[]>(sub ? [sub] : []);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export function CategorySidebar({ slugs: [main, sub] }: Props) {
             <li key={cat.slug}>
               <Link
                 href={`/products/${cat.slug}`}
+                onClick={onNavigate}
                 className={cn(
                   "block pb-3 text-lg font-semibold transition-colors",
                   isActive
@@ -63,6 +65,7 @@ export function CategorySidebar({ slugs: [main, sub] }: Props) {
                       <div className="flex items-center justify-between py-1">
                         <Link
                           href={`/products/${cat.slug}/${subCat.slug}`}
+                          onClick={onNavigate}
                           className="text-sm text-brand font-medium"
                         >
                           {subCat.label}
@@ -90,6 +93,7 @@ export function CategorySidebar({ slugs: [main, sub] }: Props) {
                               <li key={leafCat.slug}>
                                 <Link
                                   href={`/products/${cat.slug}/${subCat.slug}/${leafCat.slug}`}
+                                  onClick={onNavigate}
                                   className="block py-2 text-xs text-brand font-medium"
                                 >
                                   {leafCat.label}

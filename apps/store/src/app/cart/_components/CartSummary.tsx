@@ -22,7 +22,7 @@ export function CartSummary() {
   const total = subtotal + shippingFee;
 
   return (
-    <aside className="w-full lg:w-80 shrink-0 sticky top-24 rounded-3xl border border-neutral-100 p-6 flex flex-col gap-4">
+    <aside className="w-full lg:w-80 shrink-0 lg:sticky lg:top-24 rounded-3xl border border-neutral-100 p-5 md:p-6 flex flex-col gap-4">
       <h2 className="text-base font-bold text-brand">주문 요약</h2>
       <Separator />
 
