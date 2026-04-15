@@ -5,6 +5,11 @@ import { CartItemList } from "./CartItemList";
 import { CartSummary } from "./CartSummary";
 import { EmptyCart } from "./EmptyCart";
 
+/**
+ * Renders the shopping cart page and shows an empty-cart view when there are no items.
+ *
+ * @returns The cart page JSX: `EmptyCart` when the cart has no items; otherwise a container with the page heading, `CartItemList`, and `CartSummary`.
+ */
 export function CartContent() {
   const isEmpty = useCartStore((state) => state.ids.length === 0);
 

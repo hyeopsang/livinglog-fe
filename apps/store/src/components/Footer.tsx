@@ -20,6 +20,13 @@ const links = {
   ],
 };
 
+/**
+ * Render the site's footer including logo, a short description, categorized navigation links, and legal links.
+ *
+ * The navigation groups and items are sourced from the module-level `links` constant; layout is responsive for small and large screens.
+ *
+ * @returns A JSX element representing the footer section of the site.
+ */
 export default function Footer() {
   return (
     <footer className="w-full bg-brand mt-auto">

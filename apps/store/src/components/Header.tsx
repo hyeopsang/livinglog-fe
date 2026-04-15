@@ -17,6 +17,14 @@ const menus = [
   { name: "장식", href: "/products/decor" },
 ];
 
+/**
+ * Renders a navigation list item with a link that visually highlights when active.
+ *
+ * @param href - Destination URL for the link
+ * @param name - Visible label for the navigation item
+ * @param isActive - When `true`, applies active styling to the link
+ * @returns A `<li>` element containing the styled navigation `<Link>`
+ */
 function NavItem({
   href,
   name,
@@ -45,6 +53,14 @@ function NavItem({
   );
 }
 
+/**
+ * Renders the responsive site header with logo, navigation, search, cart, and profile controls.
+ *
+ * Provides desktop and mobile layouts, tracks scroll position to adjust header styling, and manages
+ * mobile menu and mobile search visibility. Closes the mobile menu and mobile search when the route changes.
+ *
+ * @returns The header element rendered as a responsive navigation bar with desktop navigation, a search bar, cart/profile links (including a cart count badge), and a slide-out mobile menu.
+ */
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);

@@ -23,6 +23,15 @@ interface ProfileSidebarProps {
   onTabChange: (tab: Tab) => void;
 }
 
+/**
+ * Render the profile sidebar with user info, responsive header, and navigation controls for switching tabs.
+ *
+ * Renders distinct mobile and desktop layouts: a compact header and horizontal pill nav on mobile, and a centered profile panel, vertical tab list with separators and an active indicator, and a bottom logout button on desktop.
+ *
+ * @param activeTab - The currently selected tab key shown as active in the navigation
+ * @param onTabChange - Callback invoked with a `Tab` when a navigation item is clicked
+ * @returns A React element representing the profile sidebar UI
+ */
 export function ProfileSidebar({
   activeTab,
   onTabChange,

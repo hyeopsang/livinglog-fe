@@ -10,6 +10,14 @@ interface Props {
   emptyMessage?: string;
 }
 
+/**
+ * Render a responsive product grid that shows a loading skeleton, an empty-state message, or product cards.
+ *
+ * @param products - Array of products to render in the grid. Each product must have an `id` used as the React key.
+ * @param loading - When `true`, renders a `ProductGridSkeleton` instead of the grid.
+ * @param emptyMessage - Message displayed when `products` is empty.
+ * @returns A JSX element containing the grid UI: a loading skeleton when `loading` is `true`, an empty-state list when `products` is empty, or a list of product cards otherwise.
+ */
 export function ProductGrid({
   products,
   loading = false,

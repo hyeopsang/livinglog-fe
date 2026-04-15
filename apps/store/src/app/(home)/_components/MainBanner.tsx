@@ -1,6 +1,14 @@
 import { Button } from "@livinglog/ui";
 import Image from "next/image";
 
+/**
+ * Render the main promotional banner section for the homepage.
+ *
+ * The banner displays a full-bleed hero image with layered gradient and content overlays,
+ * including an uppercase label, a multi-line headline, supporting copy in Korean, and two CTA buttons.
+ *
+ * @returns The React element for the homepage hero banner containing the image, overlays, text content, and action buttons.
+ */
 export default function MainBanner() {
   return (
     <section className="w-full">

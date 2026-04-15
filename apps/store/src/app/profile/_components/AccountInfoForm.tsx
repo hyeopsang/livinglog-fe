@@ -9,6 +9,13 @@ const MOCK_USER = {
   phone: "010-1234-5678",
 };
 
+/**
+ * Render an account information form with editable name and phone fields and a read-only email field.
+ *
+ * The form maintains local state for name, phone, and a transient saved indicator; submitting the form displays a temporary "saved" confirmation for 2 seconds. The email field is presented as read-only and disabled.
+ *
+ * @returns The rendered account information form as a React element.
+ */
 export function AccountInfoForm() {
   const [name, setName] = useState(MOCK_USER.name);
   const [phone, setPhone] = useState(MOCK_USER.phone);

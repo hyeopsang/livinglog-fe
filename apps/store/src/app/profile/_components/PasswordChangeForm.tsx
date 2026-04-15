@@ -3,6 +3,16 @@
 import { useRef, useState } from "react";
 import { Button, Input } from "@livinglog/ui";
 
+/**
+ * Renders a password change form that performs client-side validation and shows a brief success state.
+ *
+ * The form requires the current password, enforces a new password length of at least 8 characters,
+ * and requires the new password to match the confirmation field. On successful validation, input fields
+ * are cleared and a temporary "saved" state is shown for 2 seconds. This component manages its own
+ * internal state and does not perform a server-side update.
+ *
+ * @returns The password change form JSX element
+ */
 export function PasswordChangeForm() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");

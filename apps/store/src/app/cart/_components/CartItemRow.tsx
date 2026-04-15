@@ -7,6 +7,13 @@ import { useCartStore } from "@/lib/cart-store";
 import { Button } from "@livinglog/ui";
 import { formatPrice, getDiscountedPrice } from "@/lib/utils";
 
+/**
+ * Render a single cart item row displaying product image, brand/name, pricing (with discount),
+ * quantity controls, a remove button, and the line total.
+ *
+ * @param id - The cart item's identifier
+ * @returns The list item element for the specified cart item, or `null` if the item is not found
+ */
 export function CartItemRow({ id }: { id: string }) {
   const item = useCartStore((state) => state.byId[id]);
   const removeItem = useCartStore((state) => state.removeItem);

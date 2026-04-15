@@ -17,6 +17,12 @@ export interface OrderCardCallbacks {
   onReturnExchange?: (orderId: string, type: "return" | "exchange") => void;
 }
 
+/**
+ * Render the order header row showing the order's status, date, and order number.
+ *
+ * @param order - Order data used to populate the header; reads `order.status`, `order.orderedAt`, and `order.orderNumber`
+ * @returns A header row element containing a status badge, the order date, and the order number
+ */
 function OrderCardHeader({ order }: { order: Order }) {
   return (
     <div className="flex items-center justify-between px-5 py-3.5 bg-surface">
@@ -31,6 +37,16 @@ function OrderCardHeader({ order }: { order: Order }) {
   );
 }
 
+/**
+ * Renders a single order item row for an order card, showing product image, brand, name, price, an indicator for additional items, and an optional review button.
+ *
+ * @param item - The order item to render; expected to contain a `product` object with `id`, `imageUrl`, `name`, and `brand`.
+ * @param extraCount - Number of additional items in the order beyond this item.
+ * @param totalPrice - Total price to display for this item (e.g., quantity * unit price).
+ * @param showReview - If `true`, displays a "Write review" button.
+ * @param onWriteReview - Callback invoked when the review button is clicked.
+ * @returns A JSX element representing the rendered order item row.
+ */
 function OrderCardItem({
   item,
   extraCount,
@@ -90,6 +106,19 @@ function OrderCardItem({
   );
 }
 
+/**
+ * Render action buttons appropriate for the given order's status.
+ *
+ * Displays:
+ * - Reorder, return, and exchange buttons when the order is delivered.
+ * - A shipment tracking button when the order is shipping.
+ * - A cancel button when the order is pending or confirmed.
+ * - A "view order" button always.
+ *
+ * @param order - Order used to determine which actions are visible
+ * @param callbacks - Callback handlers invoked by each action button
+ * @returns A React element containing the action buttons for the order
+ */
 function OrderCardActions({
   order,
   callbacks,
@@ -178,6 +207,15 @@ interface OrderCardProps {
   callbacks?: OrderCardCallbacks;
 }
 
+/**
+ * Render an order card list item for a given order.
+ *
+ * Renders a compact order summary including header, first item preview, action buttons, and total price. Returns `null` when the order contains no items.
+ *
+ * @param order - The order to display.
+ * @param callbacks - Optional callbacks for user actions such as viewing the order, writing a review, cancelling, tracking shipment, reordering, or requesting a return/exchange. Defaults to an empty object.
+ * @returns An `<li>` element representing the order card, or `null` if the order has no items.
+ */
 export function OrderCard({ order, callbacks = {} }: OrderCardProps) {
   if (!order.items.length) return null;
 

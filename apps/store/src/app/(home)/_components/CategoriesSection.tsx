@@ -28,6 +28,15 @@ const categories = [
   },
 ];
 
+/**
+ * Render the categories section with a header and a responsive grid of category links.
+ *
+ * The section includes a small uppercase label, a branded title, and a grid of category
+ * tiles (image link plus label) that displays 2 columns by default and 4 columns on medium+
+ * screens.
+ *
+ * @returns A JSX element containing the categories section with header and responsive grid
+ */
 export default function CategoriesSection() {
   return (
     <section className="w-full py-12 px-6">

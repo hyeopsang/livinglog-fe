@@ -53,6 +53,12 @@ export function OrderHistoryError({ onRetry }: { onRetry: () => void }) {
   );
 }
 
+/**
+ * Render a list of orders or an empty-state component when there are no orders.
+ *
+ * @param orders - Array of orders to display; when empty, `EmptyOrderHistory` is rendered instead
+ * @returns A React element containing either the ordered list of `OrderCard` items or the empty-state component
+ */
 function OrderList({ orders }: { orders: Order[] }) {
   if (orders.length === 0) return <EmptyOrderHistory />;
 
@@ -65,6 +71,11 @@ function OrderList({ orders }: { orders: Order[] }) {
   );
 }
 
+/**
+ * Renders the "주문 내역" section with a heading and the list of orders.
+ *
+ * @returns The section element containing the heading and the order list component.
+ */
 export function OrderHistory() {
   // const { data, loading, error, refetch } = useGetMyOrdersQuery({
   //   fetchPolicy: "cache-and-network",

@@ -3,6 +3,14 @@
 import { useState } from "react";
 import { Button } from "@livinglog/ui";
 
+/**
+ * Renders the account-deletion section and its confirmation UI.
+ *
+ * Shows a compact "회원 탈퇴" row that opens a confirmation card when the user clicks the action;
+ * the confirmation card provides cancel and confirm controls.
+ *
+ * @returns A React element for the account deletion section with controls to open/cancel the confirmation panel and to confirm deletion.
+ */
 export function DeleteAccountSection() {
   const [showConfirm, setShowConfirm] = useState(false);
 

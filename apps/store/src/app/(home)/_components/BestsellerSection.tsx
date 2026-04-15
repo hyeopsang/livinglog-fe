@@ -8,6 +8,15 @@ import { formatPrice } from "@/lib/utils";
 import { StarRating } from "./StarRating";
 import { BestsellerSkeleton } from "./BestsellerSkeleton";
 
+/**
+ * Render the Bestseller section displaying top products with images, pricing, ratings, and badges.
+ *
+ * When the GraphQL query is loading, renders a skeleton. Otherwise renders a responsive grid of
+ * product cards that include image (with optional discount badge), brand and name, discounted and
+ * original prices, star rating and review count, and promotional badges.
+ *
+ * @returns The section element containing either the loading skeleton or the grid of bestseller product cards.
+ */
 export default function BestsellerSection() {
   const { data, loading } = useGetBestsellersQuery();
   const products = data?.bestsellers ?? [];

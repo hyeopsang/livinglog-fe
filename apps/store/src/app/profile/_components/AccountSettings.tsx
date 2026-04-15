@@ -3,6 +3,11 @@ import { AccountInfoForm } from "./AccountInfoForm";
 import { PasswordChangeForm } from "./PasswordChangeForm";
 import { DeleteAccountSection } from "./DeleteAccountSection";
 
+/**
+ * Renders skeleton placeholders for the Account Settings page layout.
+ *
+ * @returns A section element containing grouped skeletons that mirror the account info, password change, and account deletion sections for loading state.
+ */
 export function AccountSettingsSkeleton() {
   return (
     <section className="w-full flex flex-col gap-6">
@@ -35,6 +40,11 @@ export function AccountSettingsSkeleton() {
   );
 }
 
+/**
+ * Render the account settings section with account information, password change, and account deletion areas.
+ *
+ * @returns A JSX element containing the Korean heading "계정 설정" and the composed AccountInfoForm, PasswordChangeForm, and DeleteAccountSection components.
+ */
 export function AccountSettings() {
   return (
     <section className="w-full flex flex-col gap-6">
