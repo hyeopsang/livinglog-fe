@@ -1,6 +1,10 @@
+"use client";
+
 import { type Badge } from "@livinglog/graphql";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ImageOff } from "lucide-react";
 import { BADGE_CONFIG } from "@/lib/badge";
 import { formatPrice } from "@/lib/utils";
 import { StarRating } from "@/app/(home)/_components/StarRating";
@@ -18,6 +22,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: { product: ProductCardProps }) {
+  const [imgError, setImgError] = useState(false);
   const discountedPrice = Math.round(
     product.originalPrice * (1 - product.discountRate / 100)
   );
@@ -25,13 +30,20 @@ export function ProductCard({ product }: { product: ProductCardProps }) {
   return (
     <Link href={`/product/${product.id}`} className="group flex flex-col gap-3">
       <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-neutral-100">
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          fill
-          style={{ objectFit: "cover" }}
-          className="transition-transform duration-500 group-hover:scale-105"
-        />
+        {imgError ? (
+          <div className="w-full h-full flex items-center justify-center text-neutral-300">
+            <ImageOff size={36} />
+          </div>
+        ) : (
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            style={{ objectFit: "cover" }}
+            className="transition-transform duration-500 group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+        )}
         {product.discountRate > 0 && (
           <span className="absolute top-3 left-3 bg-brand text-white text-xs font-bold px-2 py-1 rounded-md">
             -{product.discountRate}%
