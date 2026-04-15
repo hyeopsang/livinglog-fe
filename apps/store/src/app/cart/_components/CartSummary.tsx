@@ -55,8 +55,8 @@ export function CartSummary() {
         <span>{formatPrice(total)}원</span>
       </div>
 
-      <Button size="lg" className="w-full rounded-2xl py-4 h-auto mt-1">
-        주문하기
+      <Button size="lg" className="w-full rounded-2xl py-4 h-auto mt-1" asChild>
+        <Link href="/checkout">주문하기</Link>
       </Button>
       <Button variant="outline" size="lg" className="w-full rounded-2xl" asChild>
         <Link href="/">쇼핑 계속하기</Link>

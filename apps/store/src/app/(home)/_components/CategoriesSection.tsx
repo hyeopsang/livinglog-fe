@@ -3,25 +3,25 @@ import Link from "next/link";
 
 const categories = [
   {
-    href: "/",
+    href: "/products/furniture",
     src: "/categories/table.avif",
     alt: "furniture-image",
     label: "가구",
   },
   {
-    href: "/",
+    href: "/products/lighting",
     src: "/categories/lighting.avif",
     alt: "lighting-image",
     label: "조명",
   },
   {
-    href: "/",
+    href: "/products/furniture",
     src: "/categories/cabinet.avif",
     alt: "cabinet-image",
     label: "수납 · 정리",
   },
   {
-    href: "/",
+    href: "/products/decor",
     src: "/categories/decor.avif",
     alt: "decor-image",
     label: "장식",

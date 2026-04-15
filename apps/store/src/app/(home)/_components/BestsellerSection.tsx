@@ -26,7 +26,7 @@ export default function BestsellerSection() {
             </p>
           </div>
           <Link
-            href="/"
+            href="/products"
             className="text-sm font-medium text-neutral-400 hover:text-brand transition-colors underline-offset-4 hover:underline self-start md:self-auto"
           >
             전체보기

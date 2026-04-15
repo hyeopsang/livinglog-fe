@@ -1,5 +1,6 @@
 import { Button } from "@livinglog/ui";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MainBanner() {
   return (
@@ -30,11 +31,11 @@ export default function MainBanner() {
               당신의 공간을 완성하는 프리미엄 라이프스타일 컬렉션
             </p>
             <div className="flex gap-3 items-center">
-              <Button className="bg-white text-brand rounded-[8px] px-5 py-2.5 md:px-8 md:py-4 text-sm md:text-base font-semibold hover:bg-white/90 transition-colors">
-                상품 보기
+              <Button className="bg-white text-brand rounded-[8px] px-5 py-2.5 md:px-8 md:py-4 text-sm md:text-base font-semibold hover:bg-white/90 transition-colors" asChild>
+                <Link href="/products">상품 보기</Link>
               </Button>
-              <Button className="bg-transparent text-white border border-white/50 rounded-[8px] px-5 py-2.5 md:px-8 md:py-4 text-sm md:text-base font-semibold hover:bg-white/10 transition-colors">
-                컬렉션
+              <Button className="bg-transparent text-white border border-white/50 rounded-[8px] px-5 py-2.5 md:px-8 md:py-4 text-sm md:text-base font-semibold hover:bg-white/10 transition-colors" asChild>
+                <Link href="/products">컬렉션</Link>
               </Button>
             </div>
           </div>
