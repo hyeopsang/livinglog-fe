@@ -21,6 +21,13 @@ interface Props {
   badges: Badge[];
 }
 
+/**
+ * Displays product details with pricing, badges, rating, quantity selector, and action buttons.
+ *
+ * Clicking the add-to-cart button calls the cart store's `addItem` with the product details and the currently selected quantity. The quantity selector enforces a minimum of 1.
+ *
+ * @returns A JSX element rendering the product information, price calculations, quantity controls, and action buttons.
+ */
 export function ProductInfo({
   id,
   brand,

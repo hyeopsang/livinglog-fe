@@ -16,6 +16,13 @@ interface Props {
   onNavigate?: () => void;
 }
 
+/**
+ * Renders a vertical category sidebar with top-level links and expandable subcategory accordions.
+ *
+ * @param slugs - Array where the first element is the active top-level category slug (`main`) and the second, if present, is the active subcategory slug (`sub`).
+ * @param onNavigate - Optional callback invoked when any category link is clicked.
+ * @returns The sidebar element containing category links and nested accordions that reflect and control open subcategory state.
+ */
 export function CategorySidebar({ slugs: [main, sub], onNavigate }: Props) {
   const [openItems, setOpenItems] = useState<string[]>(sub ? [sub] : []);
 

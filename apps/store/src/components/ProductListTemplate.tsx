@@ -20,6 +20,17 @@ interface Props {
   onSortChange: (sort: ProductSort) => void;
 }
 
+/**
+ * Render a product listing layout with title, optional subtitle, total count, sort controls, and a responsive product grid.
+ *
+ * @param title - Page title shown at the top of the list
+ * @param subtitle - Optional subtitle shown below the title
+ * @param categoryId - Optional category identifier used to filter fetched products
+ * @param query - Optional search query applied to product name and brand (applied client-side)
+ * @param sort - Currently selected sort option
+ * @param onSortChange - Callback invoked with the newly selected `ProductSort` when a sort button is clicked
+ * @returns A JSX element containing the product list UI (header, sort controls, product grid, or empty state)
+ */
 export function ProductListTemplate({
   title,
   subtitle,

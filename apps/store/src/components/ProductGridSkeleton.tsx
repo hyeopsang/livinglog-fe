@@ -1,3 +1,9 @@
+/**
+ * Renders a responsive grid of product-card skeleton placeholders for loading states.
+ *
+ * @param count - Number of skeleton cards to render (defaults to `8`)
+ * @returns An unordered list (`<ul>`) containing `count` list items, each representing a pulsing product-card skeleton
+ */
 export function ProductGridSkeleton({ count = 8 }: { count?: number }) {
   return (
     <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

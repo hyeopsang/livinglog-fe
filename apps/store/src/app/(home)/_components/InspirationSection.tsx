@@ -74,6 +74,13 @@ const items: InspirationItem[] = [
   },
 ];
 
+/**
+ * Renders the "Inspiration" section with a responsive grid of clickable image cards.
+ *
+ * The section includes a header (label, title, description, and a "더 보기" link) and a responsive gallery built from `items`. Each card displays a cover image, a hover overlay, the `user` label, and an optional `location`.
+ *
+ * @returns The JSX element containing the complete inspiration section with header and gallery
+ */
 export default function InspirationSection() {
   return (
     <section className="w-full py-10 px-4 md:py-12 md:px-6">

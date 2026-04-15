@@ -20,6 +20,16 @@ interface Props {
   params: Promise<{ slug: string[] }>;
 }
 
+/**
+ * Render a product listing page for the category identified by `params.slug`.
+ *
+ * Resolves the category from `params`, fetches products filtered by the category (cache-only),
+ * applies client-side sorting according to the `sort` query parameter (defaults to `ProductSort.Popular`),
+ * and renders breadcrumb, category sidebar (desktop), a mobile filter sheet, sorting controls, and the product grid.
+ *
+ * @param params - A promise resolving to route params containing `slug: string[]` (category path segments)
+ * @returns The React element for the products listing page
+ */
 export function ProductsContent({ params }: Props) {
   const { slug } = use(params);
   const router = useRouter();

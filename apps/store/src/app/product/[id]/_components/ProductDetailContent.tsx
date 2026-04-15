@@ -14,6 +14,15 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+/**
+ * Render the product detail page for a given route id.
+ *
+ * Fetches product data (and related products by category) and renders the product image gallery,
+ * product information, description/specifications tabs, and a related-products grid when available.
+ *
+ * @param params - Route params (a promise resolving to an object with an `id` string) used to determine which product to load
+ * @returns The product detail UI; while fetching shows a loading skeleton, on fetch error shows an error state, and triggers a 404 when the product cannot be found
+ */
 export function ProductDetailContent({ params }: Props) {
   const { id } = use(params);
 
@@ -117,6 +126,11 @@ export function ProductDetailContent({ params }: Props) {
   );
 }
 
+/**
+ * Renders a centered error message with a link back to the home page.
+ *
+ * @param message - The error message text to display to the user
+ */
 function ErrorState({ message }: { message: string }) {
   return (
     <div className="max-w-7xl w-full mx-auto px-6 py-24 flex flex-col items-center gap-4 text-center">

@@ -8,6 +8,15 @@ import { formatPrice, getDiscountedPrice } from "@/lib/utils";
 const FREE_SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 3000;
 
+/**
+ * Renders the cart order summary UI, displaying subtotal, shipping fee, total, and action buttons.
+ *
+ * The component shows shipping as "무료" when the subtotal meets or exceeds the free shipping threshold,
+ * otherwise displays the shipping price and a helper message indicating how much more is needed to qualify
+ * for free shipping.
+ *
+ * @returns A React element containing the order summary layout with formatted prices and action buttons.
+ */
 export function CartSummary() {
   const ids = useCartStore((state) => state.ids);
   const byId = useCartStore((state) => state.byId);

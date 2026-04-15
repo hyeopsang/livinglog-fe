@@ -10,6 +10,13 @@ import { AccountSettings } from "./AccountSettings";
 
 import type { Tab } from "../_types/tab";
 
+/**
+ * Renders the wishlist empty-state UI.
+ *
+ * Displays a heading, an icon with explanatory text, and a primary action linking to the storefront.
+ *
+ * @returns The JSX element for the wishlist empty-state layout.
+ */
 function Wishlist() {
   return (
     <section className="w-full flex flex-col gap-4">
@@ -32,6 +39,14 @@ function Wishlist() {
   );
 }
 
+/**
+ * Renders the 마이페이지 layout with a sidebar and tabbed main content.
+ *
+ * Manages local tab state to switch between Orders, Wishlist, and Account Settings,
+ * and supplies the active tab and change handler to the sidebar.
+ *
+ * @returns The component's `JSX.Element` containing the profile page layout with a sidebar and tabbed main content.
+ */
 export function ProfileContent() {
   const [activeTab, setActiveTab] = useState<Tab>("orders");
 

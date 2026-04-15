@@ -14,6 +14,14 @@ interface Props {
   onSortChange: (sort: ProductSort) => void;
 }
 
+/**
+ * Renders a horizontal sort bar that displays the total item count and a row of selectable sort option buttons.
+ *
+ * @param total - Total number of items to display in the count label
+ * @param sort - Currently selected sort value
+ * @param onSortChange - Callback invoked with the newly selected `ProductSort` when a sort option is clicked
+ * @returns The rendered sort bar JSX element
+ */
 export function SortBar({ total, sort, onSortChange }: Props) {
   return (
     <div className="flex items-center justify-between border-b border-neutral-100 pb-4 gap-2">
