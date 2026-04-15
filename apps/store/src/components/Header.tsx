@@ -97,6 +97,8 @@ export default function Header() {
               <button
                 onClick={() => setSearchOpen((v) => !v)}
                 aria-label="검색"
+                aria-expanded={searchOpen}
+                aria-controls="mobile-search-panel"
                 className="hover:text-brand transition-colors"
               >
                 <Search strokeWidth={1.5} size={20} />
@@ -135,11 +137,14 @@ export default function Header() {
                 <button
                   onClick={() => setMobileOpen(true)}
                   aria-label="메뉴 열기"
+                  aria-expanded={mobileOpen}
+                  aria-controls="mobile-menu-dialog"
+                  aria-haspopup="dialog"
                   className="hover:text-brand transition-colors"
                 >
                   <Menu strokeWidth={1.5} size={20} />
                 </button>
-                <SheetContent side="right" className="w-72 p-0">
+                <SheetContent id="mobile-menu-dialog" side="right" className="w-72 p-0">
                   <SheetHeader className="px-6 py-4 border-b border-neutral-100">
                     <Link href="/" onClick={() => setMobileOpen(false)}>
                       <Logo />
@@ -195,7 +200,7 @@ export default function Header() {
           </ul>
         </div>
         {searchOpen && (
-          <div className="lg:hidden px-4 pb-3 border-t border-neutral-100">
+          <div id="mobile-search-panel" className="lg:hidden px-4 pb-3 border-t border-neutral-100">
             <div className="pt-3">
               <SearchBar />
             </div>

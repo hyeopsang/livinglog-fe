@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Input } from "@livinglog/ui";
 
 export function PasswordChangeForm() {
@@ -11,8 +11,16 @@ export function PasswordChangeForm() {
   const [isSaved, setIsSaved] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsSaved(false);
     setPasswordError("");
 
     if (!currentPassword) {
