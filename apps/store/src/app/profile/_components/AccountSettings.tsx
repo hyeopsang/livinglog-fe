@@ -1,3 +1,5 @@
+"use client";
+
 import { Skeleton } from "@livinglog/ui";
 import { AccountInfoForm } from "./AccountInfoForm";
 import { PasswordChangeForm } from "./PasswordChangeForm";
@@ -30,6 +32,13 @@ export function AccountSettingsSkeleton() {
           ))}
           <Skeleton className="h-8 w-28 rounded-2xl self-end" />
         </div>
+      </div>
+      <div className="flex items-center justify-between px-1">
+        <div className="flex flex-col gap-0.5">
+          <Skeleton className="h-4 w-16" />
+          <Skeleton className="h-3 w-32" />
+        </div>
+        <Skeleton className="h-4 w-12 rounded" />
       </div>
     </section>
   );

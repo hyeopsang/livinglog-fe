@@ -20,7 +20,7 @@ export function ProductGrid({
   if (products.length === 0) {
     return (
       <ul className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <li className="col-span-4 py-24 flex flex-col items-center gap-3 text-neutral-400">
+        <li className="col-span-full py-24 flex flex-col items-center gap-3 text-neutral-400">
           <span className="text-4xl">🔍</span>
           <p className="text-sm">{emptyMessage}</p>
         </li>

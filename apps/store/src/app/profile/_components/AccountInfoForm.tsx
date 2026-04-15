@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Input } from "@livinglog/ui";
 
 const MOCK_USER = {
@@ -14,6 +14,12 @@ export function AccountInfoForm() {
   const [phone, setPhone] = useState(MOCK_USER.phone);
   const [isSaved, setIsSaved] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   function handleSave(e: React.FormEvent) {
     e.preventDefault();
