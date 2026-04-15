@@ -16,14 +16,14 @@ interface Props {
 
 export function SortBar({ total, sort, onSortChange }: Props) {
   return (
-    <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
-      <span className="text-sm text-neutral-400">총 {total.toLocaleString()}개</span>
-      <div className="flex gap-1">
+    <div className="flex items-center justify-between border-b border-neutral-100 pb-4 gap-2">
+      <span className="text-sm text-neutral-400 shrink-0">총 {total.toLocaleString()}개</span>
+      <div className="flex gap-1 overflow-x-auto scrollbar-none">
         {SORT_OPTIONS.map((opt) => (
           <button
             key={opt.value}
             onClick={() => onSortChange(opt.value)}
-            className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+            className={`shrink-0 px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
               sort === opt.value
                 ? "bg-brand text-white"
                 : "text-neutral-400 hover:text-brand"

@@ -31,7 +31,7 @@ const categories = [
 export default function CategoriesSection() {
   return (
     <section className="w-full py-12 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col gap-10">
+      <div className="max-w-7xl w-full mx-auto flex flex-col gap-10">
         <div className="flex flex-col gap-2">
           <span className="text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
             categries

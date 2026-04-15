@@ -23,8 +23,8 @@ const links = {
 export default function Footer() {
   return (
     <footer className="w-full bg-brand mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="flex justify-between items-start gap-12">
+      <div className="max-w-7xl w-full mx-auto px-4 md:px-6 py-10 md:py-16">
+        <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-start md:gap-12">
           <div className="flex flex-col gap-4">
             <Link href="/" className="text-white">
               <Logo />
@@ -35,7 +35,7 @@ export default function Footer() {
               당신의 공간을 완성하는 프리미엄 라이프스타일 컬렉션.
             </p>
           </div>
-          <div className="flex gap-16 text-sm">
+          <div className="grid grid-cols-3 gap-6 md:flex md:gap-16 text-sm">
             {Object.entries(links).map(([group, items]) => (
               <div key={group} className="flex flex-col gap-3">
                 <span className="text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase">
@@ -54,7 +54,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-16 pt-6 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-600">
+        <div className="mt-10 md:mt-16 pt-6 border-t border-neutral-800 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs text-neutral-600">
           <span>© 2026 Livinglog. All rights reserved.</span>
           <div className="flex gap-6">
             <Link
